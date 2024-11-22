@@ -37,45 +37,46 @@ namespace SDLFramework {
 
 	void GameManager::Update() {
 		mInputManager->Update();
-		mInputManager->HandleInput();
-		mTex->Update();
-		mRedShip->Update();
+		mInputManager->HandleInput(); //This runs the console code of 'key pressed'
+		mStartScreen->Update();
+		/*mTex->Update();
+		mRedShip->Update();*/
 
 		if (mInputManager->KeyDown(SDL_SCANCODE_W)) {
-			mPhysone->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime(), GameEntity::Local);			
+			//mPhysone->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime(), GameEntity::Local);			
 		}
 		else if (mInputManager->KeyDown(SDL_SCANCODE_S)) {
-			mPhysone->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime(), GameEntity::Local);
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_A)) {
-			mPhysone->Translate(Vector2(-40.0f, 0.0f) * mTimer->DeltaTime(), GameEntity::Local);
+			
 		}
 		else if (mInputManager->KeyDown(SDL_SCANCODE_D)) {
-			mPhysone->Translate(Vector2(40.0f, 0.0f) * mTimer->DeltaTime(), GameEntity::Local);
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_Q)) {
-			mPhysone->Rotation(mPhysone->getRotation(GameEntity::Local) + -180.0f * mTimer->DeltaTime());
+			
 		}
 		else if (mInputManager->KeyDown(SDL_SCANCODE_E)) {
-			mPhysone->Rotation(mPhysone->getRotation(GameEntity::Local) + 180.0f * mTimer->DeltaTime());
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_Z)) {
-			mPhysone->Scale(mPhysone->getScale() + Vector2(0.1f, 0.1f));
+			
 		}
 		else if (mInputManager->KeyDown(SDL_SCANCODE_C)) {
-			mPhysone->Scale(mPhysone->getScale() - Vector2(0.1f, 0.1f));
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_I)) {
-			mPhystwo->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime(), GameEntity::Local);
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_K)) {
-			mPhystwo->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime(), GameEntity::Local);
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_J)) {
-			mPhystwo->Rotation(mPhystwo->getRotation(GameEntity::Local) + -180.0f * mTimer->DeltaTime());
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_L)) {
-			mPhystwo->Rotation(mPhystwo->getRotation(GameEntity::Local) + 180.0f * mTimer->DeltaTime());
+			
 		}
 		if (mInputManager->KeyDown(SDL_SCANCODE_ESCAPE)) {
 			mQuit = true;
@@ -97,11 +98,11 @@ namespace SDLFramework {
 
 	void GameManager::Render() {
 		mGraphics->ClearBackBuffer();
-
-		mBackground2->Render();
-		mTex->Render();
-		mRedShip->Render();
-		mFontTex->Render();
+		mStartScreen->Render();
+		//mBackground2->Render();
+		//mTex->Render();
+		//mRedShip->Render();
+		//mFontTex->Render();
 		
 		//mPhysone->Render();
 		//mPhystwo->Render();
@@ -135,6 +136,7 @@ namespace SDLFramework {
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::HostileProjectile, 
 			PhysicsManager::CollisionFlags::Friendly);
 
+		mStartScreen = new StartScreen();
 
 		if (!Graphics::Initialized) {
 			mQuit = true;
@@ -142,34 +144,34 @@ namespace SDLFramework {
 
 		
 
-		mTex = new AnimatedTexture("SpriteSheet.png", 204, 45, 40, 38, 4, 0.5f, AnimatedTexture::Horizontal);
-		mTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
-		mTex->Scale(Vector2(2.3f, 2.3f));
+		//mTex = new AnimatedTexture("SpriteSheet.png", 204, 45, 40, 38, 4, 0.5f, AnimatedTexture::Horizontal);
+		//mTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
+		//mTex->Scale(Vector2(2.3f, 2.3f));
 
-		mRedShip = new Texture("player.png");
-		mRedShip->Position(Vector2(Graphics::SCREEN_WIDTH * 0.35f, Graphics::SCREEN_HEIGHT * 0.49f));
-		mRedShip->Scale(Vector2(0.5f, 0.5f));
+		//mRedShip = new Texture("player.png");
+		//mRedShip->Position(Vector2(Graphics::SCREEN_WIDTH * 0.35f, Graphics::SCREEN_HEIGHT * 0.49f));
+		//mRedShip->Scale(Vector2(0.5f, 0.5f));
 
-		mFontTex = new Texture("Caspiran Galaga", "ToThePoint.ttf", 100, { 0, 0, 225 });
-		mFontTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f));
+		//mFontTex = new Texture("Caspiran Galaga", "ToThePoint.ttf", 100, { 0, 0, 225 });
+		//mFontTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f));
 
-		mBackground2 = new Texture("background.jpg");
-		mBackground2->Position(Vector2(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.5f));
-		mBackground2->Scale(Vector2(1.3f, 1.3f));
+		//mBackground2 = new Texture("background.jpg");
+		//mBackground2->Position(Vector2(Graphics::SCREEN_WIDTH * 0.25f, Graphics::SCREEN_HEIGHT * 0.5f));
+		//mBackground2->Scale(Vector2(2.3f, 2.3f));
 		
-		mAudioManager->PlayMusic("BeachAmbience.mp3", -1);
+		//mAudioManager->PlayMusic("BeachAmbience.mp3", -1);
 
-		mPhysone = new PhysicsEntity();
-		mPhysone->Position(Vector2(Graphics::SCREEN_WIDTH * 0.3f, Graphics::SCREEN_HEIGHT * 0.5f));
-		mPhysone->AddCollider(new BoxCollider(Vector2(20.0f, 20.0f)));
-		mPhysone->mId = mPhysicsManager->RegisterEntity(mPhysone, PhysicsManager::CollisionLayers::Friendly);
+		//mPhysone = new PhysicsEntity();
+		//mPhysone->Position(Vector2(Graphics::SCREEN_WIDTH * 0.3f, Graphics::SCREEN_HEIGHT * 0.5f));
+		//mPhysone->AddCollider(new BoxCollider(Vector2(20.0f, 20.0f)));
+		//mPhysone->mId = mPhysicsManager->RegisterEntity(mPhysone, PhysicsManager::CollisionLayers::Friendly);
 
-		
+		//
 
-		mPhystwo = new PhysicsEntity();
-		mPhystwo->Position(Vector2(Graphics::SCREEN_WIDTH * 0.6f, Graphics::SCREEN_HEIGHT * 0.5f));
-		mPhystwo->AddCollider(new BoxCollider(Vector2(20.0f, 20.0f)));
-		mPhystwo->mId = mPhysicsManager->RegisterEntity(mPhystwo, PhysicsManager::CollisionLayers::Hostile);
+		//mPhystwo = new PhysicsEntity();
+		//mPhystwo->Position(Vector2(Graphics::SCREEN_WIDTH * 0.6f, Graphics::SCREEN_HEIGHT * 0.5f));
+		//mPhystwo->AddCollider(new BoxCollider(Vector2(20.0f, 20.0f)));
+		//mPhystwo->mId = mPhysicsManager->RegisterEntity(mPhystwo, PhysicsManager::CollisionLayers::Hostile);
 
 
 
@@ -187,25 +189,8 @@ namespace SDLFramework {
 
 	GameManager::~GameManager() {
 		//Release Variables
-		delete mTex;
-		mTex = nullptr;
-
-		delete mRedShip;
-		mRedShip = nullptr;
-
-		delete mFontTex;
-		mFontTex = nullptr;
-
-		delete mBackground2;
-		mBackground2 = nullptr;
-
-		delete mPhysone;
-		mPhysone = nullptr;
-
-		delete mPhystwo;
-		mPhystwo = nullptr;
-
-
+		delete mStartScreen;
+		mStartScreen = nullptr;
 
 		//Release Modules
 		Graphics::Release();

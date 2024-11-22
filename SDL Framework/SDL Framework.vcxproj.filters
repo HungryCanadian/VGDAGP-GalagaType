@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Caspiran Galaga">
+      <UniqueIdentifier>{f8ba3c99-4253-45db-bb16-a0a4e7a43337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Caspiran Galaga\Header Files">
+      <UniqueIdentifier>{1790c673-9610-4631-9322-4bf9486ea6e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Caspiran Galaga\Cpp Files">
+      <UniqueIdentifier>{37ac6b92-280e-4578-8746-4643b2bef1f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SDL Framework.cpp">
@@ -59,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScreen.cpp">
+      <Filter>Caspiran Galaga\Cpp Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="PhysicsHelper.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScreen.h">
+      <Filter>Caspiran Galaga\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

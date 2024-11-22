@@ -1,4 +1,5 @@
 // SDL Framework.cpp : 
+//Galaga Type game, Code along
 
 #include "GameManager.h"
 
