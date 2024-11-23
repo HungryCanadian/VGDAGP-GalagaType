@@ -146,6 +146,7 @@ xcopy "$(ProjectDir)\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClCompile Include="AnimatedTexture.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BackgroundStars.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -155,7 +156,15 @@ xcopy "$(ProjectDir)\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="SDL Framework.cpp" />
+=======
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="CaspiraArcade.cpp" />
+    <ClCompile Include="Star.cpp" />
+    <ClCompile Include="StarLayer.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
@@ -163,6 +172,7 @@ xcopy "$(ProjectDir)\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="AnimatedTexture.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BackgroundStars.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
@@ -174,6 +184,13 @@ xcopy "$(ProjectDir)\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="PhysicsEntity.h" />
     <ClInclude Include="PhysicsHelper.h" />
     <ClInclude Include="PhysicsManager.h" />
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="Star.h" />
+    <ClInclude Include="StarLayer.h" />
+    <ClInclude Include="StartScreen.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

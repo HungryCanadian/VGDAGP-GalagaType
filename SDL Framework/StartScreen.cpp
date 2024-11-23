@@ -20,8 +20,8 @@ StartScreen::StartScreen() {
 	mPlayerTwo = new Texture("2UP", "emulogic.ttf", 32, { 0,0,200 });
 	mHiScore = new Texture("HI SCORE", "emulogic.ttf", 32, { 200,0,0 });
 
-	//Background Entities
-	mAudioManager->PlayMusic("5. Dread March .mp3", -1);
+	//Background Entities TODO: Uncomment the Audiomanager down a line.
+	//mAudioManager->PlayMusic("5. Dread March .mp3", -1);
 	mBackground = new Texture("4.png");
 	mBackground->Position(Graphics::SCREEN_HEIGHT * 0.5f, Graphics::SCREEN_WIDTH * 0.5f);
 	
@@ -111,7 +111,7 @@ void StartScreen::Update() {
 
 void StartScreen::Render() {
 	//Background Entities
-	mBackground->Render();
+	//mBackground->Render(); //TODO: remove the comments here to make it more nautical themed
 
 	//Top Bar Entities
 	mPlayerOne->Render();
