@@ -4,6 +4,7 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 #include "PhysicsManager.h"
+#include "BoxCollider.h"
 
 
 namespace SDLFramework {
