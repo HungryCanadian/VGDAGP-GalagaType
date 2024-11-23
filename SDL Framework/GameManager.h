@@ -4,13 +4,11 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 #include "PhysicsManager.h"
-<<<<<<< Updated upstream
 #include "BoxCollider.h"
-=======
 #include "StartScreen.h"
 #include "Random.h"
 #include "BackgroundStars.h"
->>>>>>> Stashed changes
+
 
 
 namespace SDLFramework {
@@ -45,9 +43,10 @@ namespace SDLFramework {
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		PhysicsManager* mPhysicsManager;
+		Random* mRandom;
 
 
-<<<<<<< Updated upstream
+
 		//Example Variables
 		AnimatedTexture* mTex;
 		Texture* mRedShip;
@@ -57,11 +56,11 @@ namespace SDLFramework {
 
 		PhysicsEntity* mPhysone;
 		PhysicsEntity* mPhystwo;
-=======
+
 		//Screens
 		BackgroundStars* mStars;
 		StartScreen* mStartScreen;
->>>>>>> Stashed changes
+
 
 
 		SDL_Event mEvents;

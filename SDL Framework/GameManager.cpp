@@ -37,16 +37,16 @@ namespace SDLFramework {
 
 	void GameManager::Update() {
 		mInputManager->Update();
-<<<<<<< Updated upstream
+
 		mInputManager->HandleInput();
 		//mTex->Update();
 		//mRedShip->Update();
-=======
+
 		mInputManager->HandleInput(); //This runs the console code of 'key pressed'
 		mStars->Update();
 		mStartScreen->Update();
 
->>>>>>> Stashed changes
+
 
 		//if (mInputManager->KeyDown(SDL_SCANCODE_W)) {
 		//	mPhysone->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime(), GameEntity::Local);			
@@ -104,7 +104,7 @@ namespace SDLFramework {
 
 	void GameManager::Render() {
 		mGraphics->ClearBackBuffer();
-<<<<<<< Updated upstream
+
 
 		/*mBackground2->Render();
 		mTex->Render();
@@ -116,11 +116,11 @@ namespace SDLFramework {
 		
 //		mGreenGalaga->Render();
 //		mPurpleGalaga->Render();
-=======
+
 		mStars->Render();
 		mStartScreen->Render();
 
->>>>>>> Stashed changes
+
 
 		mGraphics->Render();
 	}
@@ -132,11 +132,10 @@ namespace SDLFramework {
 		mAudioManager = AudioManager::Instance();
 		mAssetManager = AssetManager::Instance();
 		mPhysicsManager = PhysicsManager::Instance();
-<<<<<<< Updated upstream
-=======
+
 		mRandom = Random::Instance();
 		mStars = BackgroundStars::Instance();
->>>>>>> Stashed changes
+
 
 		//Create the Physics Layers
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::Friendly, 
@@ -153,18 +152,17 @@ namespace SDLFramework {
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::HostileProjectile, 
 			PhysicsManager::CollisionFlags::Friendly);
 
-<<<<<<< Updated upstream
-=======
+
 		mStars->Scroll(true);
 		
 		mStartScreen = new StartScreen();
->>>>>>> Stashed changes
+
 
 		if (!Graphics::Initialized) {
 			mQuit = true;
 		}
 
-<<<<<<< Updated upstream
+
 		
 
 		//mTex = new AnimatedTexture("SpriteSheet.png", 204, 45, 40, 38, 4, 0.5f, AnimatedTexture::Horizontal);
@@ -208,8 +206,7 @@ namespace SDLFramework {
 		//mPurpleGalaga->Scale(Vector2(2.0f, 2.0f));
 		
 
-=======
->>>>>>> Stashed changes
+
 	}
 
 	GameManager::~GameManager() {
@@ -253,14 +250,13 @@ namespace SDLFramework {
 		PhysicsManager::Release();
 		mPhysicsManager = nullptr;
 
-<<<<<<< Updated upstream
-=======
+
 		Random::Release();
 		mRandom = nullptr;
 
 		BackgroundStars::Release();
 		mStars = nullptr;
->>>>>>> Stashed changes
+
 
 		//Quit SDL
 		SDL_Quit();

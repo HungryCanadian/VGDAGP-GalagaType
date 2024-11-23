@@ -156,15 +156,11 @@ xcopy "$(ProjectDir)\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PhysicsEntity.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
-<<<<<<< Updated upstream
-    <ClCompile Include="SDL Framework.cpp" />
-=======
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="CaspiraArcade.cpp" />
+    <ClCompile Include="SDL Framework.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="StarLayer.cpp" />
     <ClCompile Include="StartScreen.cpp" />
->>>>>>> Stashed changes
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
@@ -184,13 +180,10 @@ xcopy "$(ProjectDir)\Assets\*" "$(OutDir)Assets\" /y /s</Command>
     <ClInclude Include="PhysicsEntity.h" />
     <ClInclude Include="PhysicsHelper.h" />
     <ClInclude Include="PhysicsManager.h" />
-<<<<<<< Updated upstream
-=======
     <ClInclude Include="Random.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="StarLayer.h" />
     <ClInclude Include="StartScreen.h" />
->>>>>>> Stashed changes
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
