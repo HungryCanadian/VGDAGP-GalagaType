@@ -3,6 +3,7 @@
 #include "AudioManager.h"
 #include "PhysicsManager.h"
 #include "StartScreen.h"
+#include "Random.h"
 
 
 namespace SDLFramework {
@@ -37,6 +38,7 @@ namespace SDLFramework {
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		PhysicsManager* mPhysicsManager;
+		Random* mRandom;
 
 		//Screens
 		StartScreen* mStartScreen;

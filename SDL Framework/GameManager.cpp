@@ -83,7 +83,7 @@ namespace SDLFramework {
 		}
 		if (mInputManager->MouseButtonPressed(InputManager::LEFT)) {
 			std::cout << "Left Mouse Button Pressed" << "\n";
-			mAudioManager->PlaySFX("coin_credit.wav", 0, -1);
+			//mAudioManager->PlaySFX("coin_credit.wav", 0, -1);
 		}
 		if (mInputManager->MouseButtonReleased(InputManager::LEFT)) {
 			std::cout << "Left Mouse Button Released" << "\n";
@@ -120,6 +120,7 @@ namespace SDLFramework {
 		mAudioManager = AudioManager::Instance();
 		mAssetManager = AssetManager::Instance();
 		mPhysicsManager = PhysicsManager::Instance();
+		mRandom = Random::Instance();
 
 		//Create the Physics Layers
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::Friendly, 
@@ -141,8 +142,6 @@ namespace SDLFramework {
 		if (!Graphics::Initialized) {
 			mQuit = true;
 		}
-
-		
 
 		//mTex = new AnimatedTexture("SpriteSheet.png", 204, 45, 40, 38, 4, 0.5f, AnimatedTexture::Horizontal);
 		//mTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
@@ -210,6 +209,9 @@ namespace SDLFramework {
 
 		PhysicsManager::Release();
 		mPhysicsManager = nullptr;
+
+		Random::Release();
+		mRandom = nullptr;
 
 
 		//Quit SDL
