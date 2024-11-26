@@ -2,6 +2,7 @@
 #include "AnimatedTexture.h"
 #include "InputManager.h"
 #include "AudioManager.h"
+#include "Scoreboard.h"
 
 using namespace SDLFramework;
 
@@ -9,6 +10,8 @@ class StartScreen : public GameEntity {
 public:
 	StartScreen();
 	~StartScreen();
+
+	void ChangeSelectedMode(int change);
 
 	void Update() override;
 	void Render() override;
@@ -35,6 +38,9 @@ private:
 	Texture* mPlayerOne;
 	Texture* mPlayerTwo;
 	Texture* mHiScore;
+	Scoreboard* mPlayerOneScore;
+	Scoreboard* mPlayerTwoScore;
+	Scoreboard* mTopScore;
 
 	//Logo Entities
 	GameEntity* mLogoSpace;
@@ -47,6 +53,9 @@ private:
 	Texture* mOnePlayer;
 	Texture* mTwoPlayer;
 	Texture* mCursor;
+	Vector2 mCursorStartPos;
+	Vector2 mCursorOffset;
+	int mSelectedMode;
 	//TODO: Texture* mHiScoreList; Make a screen to display previous high scores and a three Char name to show who it belongs to
 
 	//Bottom Bar

@@ -6,7 +6,6 @@
 #include "PhysicsManager.h"
 #include "BoxCollider.h"
 #include "StartScreen.h"
-#include "Random.h"
 #include "BackgroundStars.h"
 
 
@@ -43,7 +42,7 @@ namespace SDLFramework {
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		PhysicsManager* mPhysicsManager;
-		Random* mRandom;
+		BackgroundStars* mBackgroundStars;
 
 
 
@@ -58,7 +57,6 @@ namespace SDLFramework {
 		PhysicsEntity* mPhystwo;
 
 		//Screens
-		BackgroundStars* mStars;
 		StartScreen* mStartScreen;
 
 

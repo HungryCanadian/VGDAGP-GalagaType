@@ -37,13 +37,11 @@ namespace SDLFramework {
 
 	void GameManager::Update() {
 		mInputManager->Update();
-
-		mInputManager->HandleInput();
 		//mTex->Update();
 		//mRedShip->Update();
 
 		mInputManager->HandleInput(); //This runs the console code of 'key pressed'
-		mStars->Update();
+		mBackgroundStars->Update();
 		mStartScreen->Update();
 
 
@@ -117,7 +115,7 @@ namespace SDLFramework {
 //		mGreenGalaga->Render();
 //		mPurpleGalaga->Render();
 
-		mStars->Render();
+		mBackgroundStars->Render();
 		mStartScreen->Render();
 
 
@@ -132,9 +130,7 @@ namespace SDLFramework {
 		mAudioManager = AudioManager::Instance();
 		mAssetManager = AssetManager::Instance();
 		mPhysicsManager = PhysicsManager::Instance();
-
-		mRandom = Random::Instance();
-		mStars = BackgroundStars::Instance();
+		mBackgroundStars = BackgroundStars::Instance();
 
 
 		//Create the Physics Layers
@@ -152,9 +148,6 @@ namespace SDLFramework {
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::HostileProjectile, 
 			PhysicsManager::CollisionFlags::Friendly);
 
-
-		mStars->Scroll(true);
-		
 		mStartScreen = new StartScreen();
 
 
@@ -250,12 +243,8 @@ namespace SDLFramework {
 		PhysicsManager::Release();
 		mPhysicsManager = nullptr;
 
-
-		Random::Release();
-		mRandom = nullptr;
-
 		BackgroundStars::Release();
-		mStars = nullptr;
+		mBackgroundStars = nullptr;
 
 
 		//Quit SDL

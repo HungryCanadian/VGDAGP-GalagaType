@@ -84,6 +84,9 @@
     <ClCompile Include="Random.cpp">
       <Filter>Caspira\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Scoreboard.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -147,6 +150,9 @@
       <Filter>Caspira\Header</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
   </ItemGroup>

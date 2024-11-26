@@ -16,9 +16,12 @@ StartScreen::StartScreen() {
 
 	//Top Bar
 	mTopBar = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, 40.0f);
-	mPlayerOne = new Texture("1UP", "emulogic.ttf", 32, { 200,0,0 });
+	mPlayerOne = new Texture("1UP", "emulogic.ttf", 32, { 0,0,200 });
 	mPlayerTwo = new Texture("2UP", "emulogic.ttf", 32, { 0,0,200 });
-	mHiScore = new Texture("HI SCORE", "emulogic.ttf", 32, { 200,0,0 });
+	mHiScore = new Texture("HI SCORE", "emulogic.ttf", 32, { 0,0,200 });
+	mPlayerOneScore = new Scoreboard();
+	mPlayerTwoScore = new Scoreboard();
+	mTopScore = new Scoreboard();
 
 	//Background Entities TODO: Uncomment the Audiomanager down a line.
 	//mAudioManager->PlayMusic("5. Dread March .mp3", -1);
@@ -30,10 +33,19 @@ StartScreen::StartScreen() {
 	mPlayerOne->Parent(mTopBar);
 	mPlayerTwo->Parent(mTopBar);
 	mHiScore->Parent(mTopBar);
+	mPlayerOneScore->Parent(mTopBar);
+	mPlayerTwoScore->Parent(mTopBar);
+	mTopScore->Parent(mTopBar);
 
 	mPlayerOne->Position(-Graphics::SCREEN_WIDTH * 0.35f, 0.0f);
 	mPlayerTwo->Position(Graphics::SCREEN_WIDTH * 0.3f, 0.0f);
 	mHiScore->Position(-30.0f, 0.0f);
+	mPlayerOneScore->Position(-Graphics::SCREEN_WIDTH * 0.32f, 40.0f);
+	mPlayerTwoScore->Position(Graphics::SCREEN_WIDTH * 0.32f, 40.0f);
+	mTopScore->Position(Graphics::SCREEN_WIDTH * 0.05f, 40.0f);
+	mTopScore->Score(687954);
+	mPlayerOneScore->Score(0);
+	mPlayerTwoScore->Score(0);
 
 	mPlayModes = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.55f);
 	mOnePlayer = new Texture("1 Player", "emulogic.ttf", 32 ,{230, 230, 230});
@@ -64,6 +76,9 @@ StartScreen::StartScreen() {
 	mOnePlayer->Position(0.0f, -35.0f);
 	mTwoPlayer->Position(0.0f, 35.0f);
 	mCursor->Position(-175.0f, -35.0f);
+	mCursorStartPos = mCursor->getPosition(Local);
+	mCursorOffset = Vector2(0.0, 70.0);
+
 
 	//Bottom Bar Entities
 	mBottomBar = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.7f);
@@ -106,6 +121,13 @@ void StartScreen::Update() {
 	}
 	else {
 		mAnimatedLogo->Update();
+
+		if (mInputManager->KeyPressed(SDL_SCANCODE_DOWN)) {
+			ChangeSelectedMode(1);
+		}
+		else if (mInputManager->KeyPressed(SDL_SCANCODE_UP)) {
+			ChangeSelectedMode(-1);
+		}
 	}
 }
 
@@ -117,10 +139,14 @@ void StartScreen::Render() {
 	mPlayerOne->Render();
 	mPlayerTwo->Render();
 	mHiScore->Render();
+	mPlayerOneScore->Render();
+	mPlayerTwoScore->Render();
+	mTopScore->Render();
 	//Play bar Entities
 	mOnePlayer->Render();
 	mTwoPlayer->Render();
 	mCursor->Render();
+
 	//Bottom Bar Entities
 	mNamco->Render();
 	mDates->Render();
@@ -144,6 +170,12 @@ StartScreen::~StartScreen() {
 	mPlayerOne = nullptr;
 	delete mPlayerTwo;
 	mPlayerTwo = nullptr;
+	delete mTopScore;
+	mTopScore = nullptr;
+	delete mPlayerOneScore;
+	mPlayerOneScore = nullptr;
+	delete mPlayerTwoScore;
+	mPlayerTwoScore = nullptr;
 	delete mHiScore;
 	mHiScore = nullptr;
 
@@ -181,4 +213,17 @@ StartScreen::~StartScreen() {
 	mTimer = nullptr;
 	mInputManager = nullptr;
 	mAudioManager = nullptr;
+}
+
+void StartScreen::ChangeSelectedMode(int change) {
+	mSelectedMode += change;
+
+	if (mSelectedMode < 0) {
+		mSelectedMode = 1;
+	}
+	else if (mSelectedMode > 1) {
+		mSelectedMode = 0;
+	}
+
+	mCursor->Position(mCursorStartPos + mCursorOffset * (float)mSelectedMode);
 }
