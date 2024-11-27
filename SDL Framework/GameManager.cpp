@@ -40,58 +40,9 @@ namespace SDLFramework {
 		//mTex->Update();
 		//mRedShip->Update();
 
-		mInputManager->HandleInput(); //This runs the console code of 'key pressed'
-		mBackgroundStars->Update();
-		mStartScreen->Update();
+		mScreenManager->Update();
+		//mInputManager->HandleInput(); //This runs the console code of 'key pressed'
 
-
-
-		//if (mInputManager->KeyDown(SDL_SCANCODE_W)) {
-		//	mPhysone->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime(), GameEntity::Local);			
-		//}
-		//else if (mInputManager->KeyDown(SDL_SCANCODE_S)) {
-		//	mPhysone->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime(), GameEntity::Local);
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_A)) {
-		//	mPhysone->Translate(Vector2(-40.0f, 0.0f) * mTimer->DeltaTime(), GameEntity::Local);
-		//}
-		//else if (mInputManager->KeyDown(SDL_SCANCODE_D)) {
-		//	mPhysone->Translate(Vector2(40.0f, 0.0f) * mTimer->DeltaTime(), GameEntity::Local);
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_Q)) {
-		//	mPhysone->Rotation(mPhysone->getRotation(GameEntity::Local) + -180.0f * mTimer->DeltaTime());
-		//}
-		//else if (mInputManager->KeyDown(SDL_SCANCODE_E)) {
-		//	mPhysone->Rotation(mPhysone->getRotation(GameEntity::Local) + 180.0f * mTimer->DeltaTime());
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_Z)) {
-		//	mPhysone->Scale(mPhysone->getScale() + Vector2(0.1f, 0.1f));
-		//}
-		//else if (mInputManager->KeyDown(SDL_SCANCODE_C)) {
-		//	mPhysone->Scale(mPhysone->getScale() - Vector2(0.1f, 0.1f));
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_I)) {
-		//	mPhystwo->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime(), GameEntity::Local);
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_K)) {
-		//	mPhystwo->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime(), GameEntity::Local);
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_J)) {
-		//	mPhystwo->Rotation(mPhystwo->getRotation(GameEntity::Local) + -180.0f * mTimer->DeltaTime());
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_L)) {
-		//	mPhystwo->Rotation(mPhystwo->getRotation(GameEntity::Local) + 180.0f * mTimer->DeltaTime());
-		//}
-		//if (mInputManager->KeyDown(SDL_SCANCODE_ESCAPE)) {
-		//	mQuit = true;
-		//}
-		//if (mInputManager->MouseButtonPressed(InputManager::LEFT)) {
-		//	std::cout << "Left Mouse Button Pressed" << "\n";
-		//	
-		//}
-		//if (mInputManager->MouseButtonReleased(InputManager::LEFT)) {
-		//	std::cout << "Left Mouse Button Released" << "\n";
-		//}
 	}
 
 	void GameManager::LateUpdate() {
@@ -103,7 +54,7 @@ namespace SDLFramework {
 	void GameManager::Render() {
 		mGraphics->ClearBackBuffer();
 
-
+		mScreenManager->Render();
 		/*mBackground2->Render();
 		mTex->Render();
 		mRedShip->Render();
@@ -115,8 +66,6 @@ namespace SDLFramework {
 //		mGreenGalaga->Render();
 //		mPurpleGalaga->Render();
 
-		mBackgroundStars->Render();
-		mStartScreen->Render();
 
 
 
@@ -130,7 +79,7 @@ namespace SDLFramework {
 		mAudioManager = AudioManager::Instance();
 		mAssetManager = AssetManager::Instance();
 		mPhysicsManager = PhysicsManager::Instance();
-		mBackgroundStars = BackgroundStars::Instance();
+		mScreenManager = ScreenManager::Instance();
 
 
 		//Create the Physics Layers
@@ -148,7 +97,6 @@ namespace SDLFramework {
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::HostileProjectile, 
 			PhysicsManager::CollisionFlags::Friendly);
 
-		mStartScreen = new StartScreen();
 
 
 		if (!Graphics::Initialized) {
@@ -243,8 +191,8 @@ namespace SDLFramework {
 		PhysicsManager::Release();
 		mPhysicsManager = nullptr;
 
-		BackgroundStars::Release();
-		mBackgroundStars = nullptr;
+		ScreenManager::Release();
+		mScreenManager = nullptr;
 
 
 		//Quit SDL

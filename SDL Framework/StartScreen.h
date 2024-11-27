@@ -12,6 +12,12 @@ public:
 	~StartScreen();
 
 	void ChangeSelectedMode(int change);
+	
+	void ResetAnimation();
+
+	int getSelectedMode();
+
+	//TODO: Create Animation to continue flying off the screen once the player hits play
 
 	void Update() override;
 	void Render() override;

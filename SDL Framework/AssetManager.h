@@ -10,11 +10,11 @@ namespace SDLFramework {
 		static AssetManager* Instance();
 		static void Release();
 
-		SDL_Texture* getTexture(std::string filename, bool managed = false);
-		SDL_Texture* getText(std::string text, std::string filename, int size, SDL_Color color, bool managed = false);
+		SDL_Texture* getTexture(std::string filename, bool managed = true);
+		SDL_Texture* getText(std::string text, std::string filename, int size, SDL_Color color, bool managed = true);
 
-		Mix_Music* getMusic(std::string filename, bool managed = false);
-		Mix_Chunk* getSFX(std::string filename, bool managed = false);
+		Mix_Music* getMusic(std::string filename, bool managed = true);
+		Mix_Chunk* getSFX(std::string filename, bool managed = true);
 
 		void DestroyTexture(SDL_Texture* texture);
 		void DestroyMusic(Mix_Music* music);

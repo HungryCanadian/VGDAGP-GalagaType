@@ -6,11 +6,7 @@ StartScreen::StartScreen() {
 	mAudioManager = AudioManager::Instance();
 
 	//Screen Animation Variables
-	mAnimationStartPos = Vector2(0.0f, Graphics::SCREEN_HEIGHT);
-	mAnimationEndPos = Vec2_Zero;
-	mAnimationTotalTime = 5.0f;
-	mAnimationTimer = 0.0f;
-	mAnimationDone = false;
+	
 
 	
 
@@ -43,9 +39,8 @@ StartScreen::StartScreen() {
 	mPlayerOneScore->Position(-Graphics::SCREEN_WIDTH * 0.32f, 40.0f);
 	mPlayerTwoScore->Position(Graphics::SCREEN_WIDTH * 0.32f, 40.0f);
 	mTopScore->Position(Graphics::SCREEN_WIDTH * 0.05f, 40.0f);
-	mTopScore->Score(687954);
-	mPlayerOneScore->Score(0);
-	mPlayerTwoScore->Score(0);
+	mTopScore->Score(3080);
+	
 
 	mPlayModes = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.55f);
 	mOnePlayer = new Texture("1 Player", "emulogic.ttf", 32 ,{230, 230, 230});
@@ -98,10 +93,37 @@ StartScreen::StartScreen() {
 	mRights->Position(0.0f, 170.0f);
 
 
+	//Position(mAnimationStartPos);
+	ResetAnimation();
+
+
+}
+
+void StartScreen::ResetAnimation() {
+	mAnimationStartPos = Vector2(0.0f, Graphics::SCREEN_HEIGHT);
+	mAnimationEndPos = Vec2_Zero;
+	mAnimationTotalTime = 5.0f;
+	mAnimationTimer = 0.0f;
+	mAnimationDone = false;
+
 	Position(mAnimationStartPos);
+}
 
+int StartScreen::getSelectedMode() {
+	return mSelectedMode;
+}
 
+void StartScreen::ChangeSelectedMode(int change) {
+	mSelectedMode += change;
 
+	if (mSelectedMode < 0) {
+		mSelectedMode = 1;
+	}
+	else if (mSelectedMode > 1) {
+		mSelectedMode = 0;
+	}
+
+	mCursor->Position(mCursorStartPos + mCursorOffset * (float)mSelectedMode);
 }
 
 void StartScreen::Update() {
@@ -215,15 +237,3 @@ StartScreen::~StartScreen() {
 	mAudioManager = nullptr;
 }
 
-void StartScreen::ChangeSelectedMode(int change) {
-	mSelectedMode += change;
-
-	if (mSelectedMode < 0) {
-		mSelectedMode = 1;
-	}
-	else if (mSelectedMode > 1) {
-		mSelectedMode = 0;
-	}
-
-	mCursor->Position(mCursorStartPos + mCursorOffset * (float)mSelectedMode);
-}
