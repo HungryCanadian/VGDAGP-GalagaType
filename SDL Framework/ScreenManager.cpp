@@ -51,6 +51,7 @@ void ScreenManager::Update() {
 			//Find a way to determine which choise the player is choosing to determine if 'hiscore is selected' (startscreen variable = mSelectedMode; write a getter to grab the selected mode)
 			mCurrentScreen = Play;
 			mStartScreen->ResetAnimation();
+			mPlayScreen->StartNewGame();
 
 
 		}
@@ -58,7 +59,6 @@ void ScreenManager::Update() {
 
 	case ScreenManager::Play:
 		mPlayScreen->Update();
-		mBackgroundStars->Scroll(true);
 		if (mInput->KeyPressed(SDL_SCANCODE_ESCAPE)) {
 			mCurrentScreen = Start;
 		}
