@@ -8,8 +8,9 @@
 namespace SDLFramework {
 	class Graphics {
 	public:
-		static const int SCREEN_WIDTH = 600;
-		static const int SCREEN_HEIGHT = 800;
+		static const int SCREEN_WIDTH = 1024;
+		static const int SCREEN_HEIGHT = 896;
+		const char* WINDOW_TITLE = "Caspiran Galaga";
 
 		static Graphics* Instance();
 		//handle releasing memory (unitializing memory)

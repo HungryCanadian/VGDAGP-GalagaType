@@ -1,9 +1,9 @@
 #pragma once
 #include "Graphics.h"
-#include "AnimatedTexture.h"
-#include "InputManager.h"
 #include "AudioManager.h"
 #include "PhysicsManager.h"
+#include "ScreenManager.h"
+
 
 
 namespace SDLFramework {
@@ -38,6 +38,8 @@ namespace SDLFramework {
 		InputManager* mInputManager;
 		AudioManager* mAudioManager;
 		PhysicsManager* mPhysicsManager;
+		ScreenManager* mScreenManager;
+
 
 
 		//Example Variables
@@ -49,7 +51,6 @@ namespace SDLFramework {
 
 		PhysicsEntity* mPhysone;
 		PhysicsEntity* mPhystwo;
-
 
 		SDL_Event mEvents;
 

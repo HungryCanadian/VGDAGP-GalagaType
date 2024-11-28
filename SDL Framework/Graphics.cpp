@@ -92,7 +92,7 @@ namespace SDLFramework {
 		SDL_DestroyRenderer(mRenderer);
 		SDL_DestroyWindow(mWindow);
 	}
-	
+
 	bool Graphics::Init() {
 
 		if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
@@ -101,7 +101,7 @@ namespace SDLFramework {
 		}
 
 		mWindow = SDL_CreateWindow(
-			"SDL Framework",
+			WINDOW_TITLE,
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
 			SCREEN_WIDTH,

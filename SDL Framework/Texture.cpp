@@ -64,8 +64,9 @@ namespace SDLFramework {
 		Vector2 pos = getPosition(World);
 		Vector2 scale = getScale(World);
 
-		mDestinationRect.x = (int)(pos.x - mWidth * 0.5f);
-		mDestinationRect.y = (int)(pos.y - mHeight * 0.5f);
+		//TODO: bring this fix to the framework!
+		mDestinationRect.x = (int)(pos.x - mWidth * scale.x * 0.5f);
+		mDestinationRect.y = (int)(pos.y - mHeight * scale.y * 0.5f);
 		mDestinationRect.w = (int)(mWidth * scale.x);
 		mDestinationRect.h = (int)(mHeight * scale.y);
 
