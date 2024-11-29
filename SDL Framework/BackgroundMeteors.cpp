@@ -4,8 +4,9 @@ BackgroundMeteors* BackgroundMeteors::sInstance = nullptr;
 
 BackgroundMeteors* BackgroundMeteors::Instance() {
 	if (sInstance == nullptr) {
+		std::cerr << "before Creating BackgroundMeteors instance!" << std::endl;
 		sInstance = new BackgroundMeteors();
-		std::cerr << "Creating BackgroundMeteors instance!" << std::endl;
+		std::cerr << "after Creating BackgroundMeteors instance!" << std::endl;
 	}
 	return sInstance;
 }
