@@ -117,6 +117,18 @@
     <ClCompile Include="Level.cpp">
       <Filter>Caspira\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Meteor.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MeteorLayer.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMeteors.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -195,6 +207,18 @@
       <Filter>Caspira\Header</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Meteor.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorLayer.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundMeteors.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
   </ItemGroup>

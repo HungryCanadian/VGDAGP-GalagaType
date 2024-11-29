@@ -1,5 +1,6 @@
 #pragma once
 #include "Level.h"
+#include "Player.h"
 
 using namespace SDLFramework;
 
@@ -14,12 +15,16 @@ public:
 	void Update() override;
 	void Render() override;	
 
+	bool GameOver();
+
 private:
 	Timer* mTimer;
 	AudioManager* mAudio;
 	
 	PlaySideBar* mSideBar;
 	BackgroundStars* mStars;
+	BackgroundMeteors* mMeteors;
+	Player* mPlayer;
 
 	Texture* mStartLabel;
 

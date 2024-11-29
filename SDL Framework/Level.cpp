@@ -4,11 +4,12 @@ void Level::StartStage() {
 	mStageStarted = true;
 }
 
-Level::Level(int stage, PlaySideBar* sideBar) {
+Level::Level(int stage, PlaySideBar* sideBar, Player* player) {
 	mTimer = Timer::Instance();
 	mSideBar = sideBar;
 	mSideBar->SetLevel(stage);
 	mBackgroundStars = BackgroundStars::Instance();
+	mBackgroundMeteors = BackgroundMeteors::Instance();
 
 	mStage = stage;
 	mStageStarted = false;
@@ -33,12 +34,16 @@ Level::Level(int stage, PlaySideBar* sideBar) {
 
 	mReadyLabelOnScreen = mStageLabelOffScreen;
 	mReadyLabelOffScreen = mReadyLabelOnScreen + 3.0f;
+
+	mPlayer = player;
 }
 
 Level::~Level() {
 	mTimer = nullptr;
 	mSideBar = nullptr;
 	mBackgroundStars = nullptr;
+	mBackgroundMeteors = nullptr;
+	mPlayer = nullptr;
 
 	delete mStageLabel;
 	mStageLabel = nullptr;
@@ -53,12 +58,16 @@ void Level::Update() {
 		mLabelTimer += mTimer->DeltaTime();
 		if (mLabelTimer >= mStageLabelOffScreen) {
 			mBackgroundStars->Scroll(true);
+			mBackgroundMeteors->Scroll(true);
 			if (mStage > 1) {
 				StartStage();
 			}
 			else {
+				//GET READY label only shows on stage 1 - change this?
 				if (mLabelTimer >= mReadyLabelOffScreen) {
 					StartStage();
+					mPlayer->Active(true);
+					mPlayer->Visible(true);
 				}
 			}
 		}

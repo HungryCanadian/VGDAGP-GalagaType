@@ -1,12 +1,12 @@
-#include "Star.h"
+#include "Meteor.h"
 
-bool Star::sScroll = false;
+bool Meteor::sScroll = false;
 
-void Star::Scroll(bool scroll) {
+void Meteor::Scroll(bool scroll) {
 	sScroll = scroll;
 }
 
-Star::Star(int layer) : Texture("Stars.png", 0,0,50,50) {
+Meteor::Meteor(int layer) : Texture("Meteors.png", 0, 0, 50, 50) {
 	mTimer = Timer::Instance();
 	mRandom = Random::Instance();
 
@@ -17,22 +17,19 @@ Star::Star(int layer) : Texture("Stars.png", 0,0,50,50) {
 	Position(Vector2((float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_WIDTH),
 		(float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_HEIGHT)));
 
-	mFlickerTime = 0.0f;
-	mFlickerSpeed = mRandom->RandomRange(0.55f, 1.0f);
-	
 	float inverseLayer = 1.0f / layer;
 	Scale(Vec2_One * inverseLayer);
 
-	mScrollSpeed = 8.0f / layer;
+	mScrollSpeed = 18.0f / layer;
 
 }
 
-Star::~Star() {
+Meteor::~Meteor() {
 	mTimer = nullptr;
 	mRandom = nullptr;
 }
 
-void Star::ScrollStar() {
+void Meteor::ScrollMeteor() {
 	Translate(Vec2_Up * mScrollSpeed);
 
 	Vector2 pos = getPosition(Local);
@@ -43,21 +40,13 @@ void Star::ScrollStar() {
 	}
 }
 
-void Star::Update() {
-	mFlickerTime += mTimer->DeltaTime();
-
-	if (mFlickerTime >= mFlickerSpeed) {
-		mVisible = !mVisible;
-		mFlickerTime =  0.0f;
-	}
-
+void Meteor::Update() {
 	if (sScroll == true) {
-		ScrollStar();
+		ScrollMeteor();
 	}
 }
 
-void Star::Render() {
-	if (mVisible == true) {
-		Texture::Render();
-	}
+void Meteor::Render() {
+	Texture::Render();
+	
 }

@@ -2,6 +2,7 @@
 #include "StartScreen.h"
 #include "PlayScreen.h"
 #include "BackgroundStars.h"
+#include "BackgroundMeteors.h"
 
 class ScreenManager {
 public:
@@ -21,6 +22,7 @@ private:
 	static ScreenManager* sInstance;
 
 	BackgroundStars* mBackgroundStars;
+	BackgroundMeteors* mBackgroundMeteors;
 	InputManager* mInput;
 
 	//Screens

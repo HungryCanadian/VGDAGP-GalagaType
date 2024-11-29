@@ -40,15 +40,17 @@ ScreenManager::~ScreenManager() {
 
 void ScreenManager::Update() {
 	mBackgroundStars->Update();
+	mBackgroundMeteors->Update();
 
 	switch (mCurrentScreen) {
 	case ScreenManager::Start:
+		mBackgroundStars->Scroll(false);
 		mBackgroundStars->Scroll(false);
 		mStartScreen->Update();
 
 		if (mInput->KeyPressed(SDL_SCANCODE_RETURN)) {
 			//we want to switch from start screen to the play screen
-			//Find a way to determine which choise the player is choosing to determine if 'hiscore is selected' (startscreen variable = mSelectedMode; write a getter to grab the selected mode)
+			//Find a way to determine which choice the player is choosing to determine if 'hiscore is selected' (startscreen variable = mSelectedMode; write a getter to grab the selected mode)
 			mCurrentScreen = Play;
 			mStartScreen->ResetAnimation();
 			mPlayScreen->StartNewGame();
@@ -73,6 +75,7 @@ void ScreenManager::Update() {
 
 void ScreenManager::Render() {
 	mBackgroundStars->Render();
+	mBackgroundMeteors->Render();
 
 	switch (mCurrentScreen) {
 	case ScreenManager::Start:

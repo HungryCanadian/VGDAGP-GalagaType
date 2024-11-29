@@ -53,12 +53,13 @@ namespace SDLFramework {
 
 	void GameManager::Render() {
 		mGraphics->ClearBackBuffer();
-
+		
+		mBackground2->Render();
 		mScreenManager->Render();
-		/*mBackground2->Render();
-		mTex->Render();
-		mRedShip->Render();
-		mFontTex->Render();*/
+		
+		//mTex->Render();
+		//mRedShip->Render();
+		//mFontTex->Render();
 		
 		//mPhysone->Render();
 		//mPhystwo->Render();
@@ -117,10 +118,10 @@ namespace SDLFramework {
 		//mFontTex = new Texture("Caspiran Galaga", "ToThePoint.ttf", 100, { 0, 0, 225 });
 		//mFontTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f));
 
-		//mBackground2 = new Texture("background.jpg");
-		//mBackground2->Position(Vector2(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.5f));
-		//mBackground2->Scale(Vector2(1.3f, 1.3f));
-		//
+		mBackground2 = new Texture("background.png");
+		mBackground2->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
+		mBackground2->Scale(Vector2(1.1f, 0.6f));
+		
 		//mAudioManager->PlayMusic("BeachAmbience.mp3", -1);
 
 		//mPhysone = new PhysicsEntity();
