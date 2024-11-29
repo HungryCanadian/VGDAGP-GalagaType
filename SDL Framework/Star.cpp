@@ -12,7 +12,7 @@ Star::Star(int layer) : Texture("Stars.png", 0,0,50,50) {
 
 	int starColor = mRandom->RandomInt() % 4;
 
-	mSourceRect.x = starColor * 4;
+	mSourceRect.x = starColor * 3;
 
 	Position(Vector2((float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_WIDTH),
 		(float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_HEIGHT)));

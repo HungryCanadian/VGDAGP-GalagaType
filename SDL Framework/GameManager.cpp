@@ -37,11 +37,7 @@ namespace SDLFramework {
 
 	void GameManager::Update() {
 		mInputManager->Update();
-		//mTex->Update();
-		//mRedShip->Update();
-
 		mScreenManager->Update();
-		//mInputManager->HandleInput(); //This runs the console code of 'key pressed'
 
 	}
 

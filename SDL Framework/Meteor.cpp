@@ -22,6 +22,8 @@ Meteor::Meteor(int layer) : Texture("Meteors.png", 0, 0, 50, 50) {
 
 	mScrollSpeed = 18.0f / layer;
 
+	mVisible = true;
+
 }
 
 Meteor::~Meteor() {

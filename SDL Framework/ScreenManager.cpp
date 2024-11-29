@@ -45,7 +45,7 @@ void ScreenManager::Update() {
 	switch (mCurrentScreen) {
 	case ScreenManager::Start:
 		mBackgroundStars->Scroll(false);
-		mBackgroundStars->Scroll(false);
+		mBackgroundMeteors->Scroll(false);
 		mStartScreen->Update();
 
 		if (mInput->KeyPressed(SDL_SCANCODE_RETURN)) {

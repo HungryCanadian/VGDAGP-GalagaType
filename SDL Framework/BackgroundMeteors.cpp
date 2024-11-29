@@ -30,17 +30,24 @@ void BackgroundMeteors::Scroll(bool scroll) {
 void BackgroundMeteors::Update() {
 	if (mMeteorLayers != nullptr) {
 		for (auto layer : mMeteorLayers) {
-			// Update each layer
+			layer->Update();
 		}
+		
+	}
+	else {
+		std::cerr << "Can't Update Meteor's\n";
 	}
 }
 
 void BackgroundMeteors::Render() {
 	if (mMeteorLayers != nullptr) {
 		for (auto layer : mMeteorLayers) {
-			// Update each layer
+			layer->Render();
 		}
+		
 	}
+	else { std::cerr << "Can't Render Meteor's\n"; }
+
 }
 
 BackgroundMeteors::~BackgroundMeteors() {
