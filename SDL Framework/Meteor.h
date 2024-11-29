@@ -22,6 +22,8 @@ private:
 	float mScrollSpeed;
 
 	bool mVisible;
+	float mFlickerTime;
+	float mFlickerSpeed;
 
 	void ScrollMeteor();
 };

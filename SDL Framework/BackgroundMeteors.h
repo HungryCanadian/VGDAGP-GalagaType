@@ -1,4 +1,3 @@
-
 #pragma once
 #include "MeteorLayer.h"
 
@@ -14,7 +13,7 @@ public:
 
 private:
 	static BackgroundMeteors* sInstance;
-	static const int LAYER_COUNT = 2;
+	static const int LAYER_COUNT = 3;
 	MeteorLayer* mMeteorLayers[LAYER_COUNT];
 
 	BackgroundMeteors();
