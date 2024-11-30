@@ -9,19 +9,25 @@ using namespace SDLFramework;
 
 class Level : public GameEntity {
 public:
+	enum LevelStates { Running, Finished, GameOver };
+
 	Level(int stage, PlaySideBar* sideBar, Player* player);
 	~Level();
+
+	LevelStates State();
 
 	void Update();
 	void Render();
 
-	enum LevelStates {Running,Finished,GameOver};
+	
 
 private:
 	Timer* mTimer;
 	PlaySideBar* mSideBar;
 	BackgroundStars* mBackgroundStars;
 	BackgroundMeteors* mBackgroundMeteors;
+
+	Player* mPlayer;
 
 	int mStage;
 	bool mStageStarted;
@@ -37,7 +43,23 @@ private:
 
 	float mLabelTimer;
 
+	bool mPlayerHit;
+	float mRespawnDelay;
+	float mRespawnTimer;
+	float mRespawnLabelOnScreen;
+
+	Texture* mGameOverLabel;
+	float mGameOverDelay;
+	float mGameOverTimer;
+	float mGameOverLabelOnScreen;
+
+	LevelStates mCurrentState;
+
+	void HandleStartLabels();
+	void HandleCollisions();
+	void HandlePlayerDeath();
+
 	void StartStage();
 
-	Player* mPlayer;
+	
 };

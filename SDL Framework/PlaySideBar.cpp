@@ -39,12 +39,12 @@ PlaySideBar::PlaySideBar() {
 	//Ships Lives (displaying the ships in connection with player lives)
 	mShips = new GameEntity();
 	mShips->Parent(this);
-	mShips->Position(-40.0f, 420.0f);
+	mShips->Position(-65.0f, 420.0f);
 
 	for (int i = 0; i < MAX_SHIP_TEXTURES; i++) {
-		mShipTextures[i] = new Texture("PlayerShips.png", 0, 0, 60, 64);
+		mShipTextures[i] = new Texture("Life.png", 0, 0, 35, 27);
 		mShipTextures[i]->Parent(mShips);
-		mShipTextures[i]->Position(62.0f * (i % 3), 70.0f * (i / 3));
+		mShipTextures[i]->Position(40.0f * (i % 10), 25.0f * (i / 5));
 
 	}
 

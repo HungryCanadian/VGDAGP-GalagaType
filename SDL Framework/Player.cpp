@@ -10,7 +10,7 @@ void Player::HandleMovement() {
 	}
 
 	Vector2 pos = getPosition(Local);
-	if (pos.x < mMoveBounds.x) {
+	if (pos.x < mMoveBounds.x ) {
 		pos.x = mMoveBounds.x;
 	}
 	else if (pos.x > mMoveBounds.y) {
@@ -30,7 +30,7 @@ Player::Player() {
 	mWasHit = false;
 
 	mScore = 0;
-	mLives = 2;
+	mLives = 1;
 
 	mMoveSpeed = 100.0f;
 	mMoveBounds = Vector2(0.0f, 800.0f);
@@ -86,9 +86,13 @@ int Player::Score() {
 int Player::Lives() {
 	return mLives;
 }
-
-bool Player::WasHit() {
-	return mWasHit;
+//TODO: Temporary Functionality. Hit() will be what Handles this.
+void Player::WasHit() {
+	mLives -= 1;
+	mAnimating = true;
+	mDeathAnimation->ResetAnimation();
+	mAudio->PlaySFX("PlayerExplosion.wav");
+	
 }
 
 bool Player::IgnoreCollisions() {

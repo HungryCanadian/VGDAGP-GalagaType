@@ -45,7 +45,7 @@ StartScreen::StartScreen() {
 	mPlayModes = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.55f);
 	mOnePlayer = new Texture("1 Player", "emulogic.ttf", 32 ,{230, 230, 230});
 	mTwoPlayer = new Texture("2 Player", "emulogic.ttf", 32, { 230, 230, 230 });
-	mCursor = new Texture("Anchor.png");
+	mCursor = new Texture("Cursor.png");
 
 	//Logo Texture
 	mLogoSpace = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.20f);

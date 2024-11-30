@@ -43,7 +43,7 @@ void BackgroundMeteors::Update() {
 		}
 	}
 	else {
-		std::cerr << "Can't Update Meteor: mMeteorLayers is nullptr!\n";
+		//std::cerr << "Can't Update Meteor: mMeteorLayers is nullptr!\n";
 	}
 }
 
@@ -54,7 +54,9 @@ void BackgroundMeteors::Render() {
 		}
 		
 	}
-	else { std::cerr << "Can't Render Meteor\n"; }
+	else { 
+		//std::cerr << "Can't Render Meteor\n"; 
+	}
 
 }
 

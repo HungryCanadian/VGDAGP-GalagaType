@@ -24,9 +24,10 @@ private:
 	PlaySideBar* mSideBar;
 	BackgroundStars* mStars;
 	BackgroundMeteors* mMeteors;
-	Player* mPlayer;
+	
 
 	Texture* mStartLabel;
+	Player* mPlayer;
 
 	float mLevelStartTimer;
 	float mLevelStartDelay;

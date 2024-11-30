@@ -129,6 +129,9 @@
     <ClCompile Include="BackgroundMeteors.cpp">
       <Filter>Caspira\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Known Bugs.cpp">
+      <Filter>Caspira</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">

@@ -21,6 +21,7 @@ PlayScreen::PlayScreen() {
 	mLevelStarted = false;
 
 	mPlayer = nullptr;
+	
 
 }
 
@@ -53,12 +54,12 @@ void PlayScreen::StartNewGame() {
 	mLevelStarted = false;
 	mLevelStartTimer = 0.0f;
 	mCurrentStage = 0;
-	mAudio->PlayMusic("GameStart.wav", 0);
+	//mAudio->PlayMusic("GameStart.wav", 0);
 
 	delete mPlayer;
 	mPlayer = new Player();
 	mPlayer->Parent(this);
-	mPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.5f);
+	mPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.8f);
 	mPlayer->Active(false);
 
 	mSideBar->SetPlayerScore(mPlayer->Score());
@@ -77,6 +78,12 @@ void PlayScreen::StartNextLevel() {
 	mLevel = new Level(mCurrentStage, mSideBar, mPlayer);
 }
 
+bool PlayScreen::GameOver() {
+	//This is essentially an if statement as a return on a single line
+	//If mLevelStarts == false, return false. Otherwise we return true or false if the state == gameover
+	return !mLevelStarted ? false : (mLevel->State() == Level::GameOver);
+}
+
 void PlayScreen::Update() { 
 	if (mGameStarted) {
 		if (!mLevelStarted) {
@@ -86,8 +93,14 @@ void PlayScreen::Update() {
 			}
 		}
 		else {
+			//the level has started or is in session.
 			mLevel->Update();
+
+			if (mLevel->State() == Level::Finished) {
+				mLevelStarted = false;
+			}
 		}
+
 		if (mCurrentStage > 0) {
 			mSideBar->Update();
 		}
@@ -108,8 +121,10 @@ void PlayScreen::Render() {
 		mStartLabel->Render();
 	}
 
-	if (mGameStarted && mLevelStarted) {
-		mLevel->Render();
+	if (mGameStarted) {
+		if (mLevelStarted) {
+			mLevel->Render();
+		}
+		mPlayer->Render();
 	}
-	mPlayer->Render();
 }
