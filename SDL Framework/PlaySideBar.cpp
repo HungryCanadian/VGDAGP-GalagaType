@@ -5,27 +5,32 @@ PlaySideBar::PlaySideBar() {
 	mTimer = Timer::Instance();
 	mAudio = AudioManager::Instance();
 
-	mBackground = new Texture("Black.png");
+	mBackground = new Texture("Panel.png");
 	mBackground->Parent(this);
-	mBackground->Scale(Vector2(3.0f, 10.0f));
-	mBackground->Position(45.0f, 380.0f);
+	mBackground->Scale(Vector2(0.65f, 1.05f));
+	mBackground->Position(10.0f, 400.0f);
 	//High Score
-	mHighLabel = new Texture("HIGH", "emulogic.ttf", 32, { 150,0,0 });
+	mHighLabel = new Texture("HIGHSCORE", "Stargazer.ttf", 32, { 150,0,0 });
 	mHighLabel->Parent(this);
-	mHighLabel->Position(-25.0f, 0.0f);
+	mHighLabel->Position(15.0f, 10.0f);
 
-	mScoreLabel = new Texture("SCORE", "emulogic.ttf", 32, { 150,0,0 });
+	mScoreLabel = new Texture("Score", "Stargazer.ttf", 32, { 150,0,0 });
 	mScoreLabel->Parent(this);
-	mScoreLabel->Position(25.0f, 32.0f);
+	mScoreLabel->Position(50.0f, 150.0f);
+
+	mHighScorePanel = new Texture("Button.png");
+	mHighScorePanel->Parent(this);
+	mHighScorePanel->Position(10.0f, 32.0f);
+	mHighScorePanel->Scale(Vector2(2.0f, 2.0f));
 
 	mHighScoreBoard = new Scoreboard();
 	mHighScoreBoard->Parent(this);
-	mHighScoreBoard->Position(90.0f, 64.0f);
+	mHighScoreBoard->Position(90.0f, 45.0f);
 
 	//One up
-	mOneUpLabel = new Texture("1UP", "emulogic.ttf", 32, { 150,0,0 });
+	mOneUpLabel = new Texture("1UP", "emulogic.ttf", 18, { 150,0,0 });
 	mOneUpLabel->Parent(this);
-	mOneUpLabel->Position(-45.0f, 160.0f);
+	mOneUpLabel->Position(-45.0f, 145.0f);
 
 	mBlinkTimer = 0.0f;
 	mBlinkInterval = 0.5f;
@@ -34,9 +39,22 @@ PlaySideBar::PlaySideBar() {
 	mPlayerOneScore = new Scoreboard();
 	mPlayerOneScore->Parent(this);
 	mPlayerOneScore->Position(90.0f, 192.0f);
+	
+	mPlayerScorePanel = new Texture("PanelEmpty.png");
+	mPlayerScorePanel->Parent(this);
+	mPlayerScorePanel->Position(15.0f, 192.0f);
+	mPlayerScorePanel->Scale(Vector2(2.4f, 1.45f));
+
 
 
 	//Ships Lives (displaying the ships in connection with player lives)
+	mLivesPanel = new Texture("PanelRed.png");
+	mLivesPanel->Parent(this);
+	mLivesPanel->Position(15.0f, 420.0f);
+	mLivesPanel->Scale(Vector2(2.45f, 2.0f));
+	mLivesLabel = new Texture("Lives", "Stargazer.ttf", 32, { 150,0,0 });
+	mLivesLabel->Parent(this);
+	mLivesLabel->Position(-15.0f, 370.0f);
 	mShips = new GameEntity();
 	mShips->Parent(this);
 	mShips->Position(-65.0f, 420.0f);
@@ -74,6 +92,9 @@ PlaySideBar::~PlaySideBar() {
 
 	delete mScoreLabel;
 	mScoreLabel = nullptr;
+	
+	delete mLivesLabel;
+	mLivesLabel = nullptr;
 
 	delete mHighScoreBoard;
 	mHighScoreBoard = nullptr;
@@ -218,6 +239,10 @@ void PlaySideBar::Update() {
 
 void PlaySideBar::Render() {
 	mBackground->Render();
+	mHighScorePanel->Render();
+	mLivesPanel->Render();
+	mLivesLabel->Render();
+	mPlayerScorePanel->Render();
 
 	mHighLabel->Render();
 	mScoreLabel->Render();

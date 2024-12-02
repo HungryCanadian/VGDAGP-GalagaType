@@ -24,6 +24,7 @@ private:
 	PlaySideBar* mSideBar;
 	BackgroundStars* mStars;
 	BackgroundMeteors* mMeteors;
+	BackgroundPlanets* mPlanets;
 	
 
 	Texture* mStartLabel;

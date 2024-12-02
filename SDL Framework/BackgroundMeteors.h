@@ -13,7 +13,7 @@ public:
 
 private:
 	static BackgroundMeteors* sInstance;
-	static const int LAYER_COUNT = 3;
+	static const int LAYER_COUNT = 1;
 	MeteorLayer* mMeteorLayers[LAYER_COUNT];
 
 	BackgroundMeteors();

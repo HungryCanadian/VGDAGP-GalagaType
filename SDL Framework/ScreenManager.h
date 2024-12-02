@@ -3,6 +3,7 @@
 #include "PlayScreen.h"
 #include "BackgroundStars.h"
 #include "BackgroundMeteors.h"
+#include "BackgroundPlanet.h"
 
 class ScreenManager {
 public:
@@ -23,6 +24,7 @@ private:
 
 	BackgroundStars* mBackgroundStars;
 	BackgroundMeteors* mBackgroundMeteors;
+	BackgroundPlanets* mBackgroundPlanets;
 	InputManager* mInput;
 
 	//Screens

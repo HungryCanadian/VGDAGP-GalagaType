@@ -53,19 +53,6 @@ namespace SDLFramework {
 		mBackground2->Render();
 		mScreenManager->Render();
 		
-		//mTex->Render();
-		//mRedShip->Render();
-		//mFontTex->Render();
-		
-		//mPhysone->Render();
-		//mPhystwo->Render();
-		
-//		mGreenGalaga->Render();
-//		mPurpleGalaga->Render();
-
-
-
-
 		mGraphics->Render();
 	}
 
@@ -103,16 +90,6 @@ namespace SDLFramework {
 
 		
 
-		//mTex = new AnimatedTexture("SpriteSheet.png", 204, 45, 40, 38, 4, 0.5f, AnimatedTexture::Horizontal);
-		//mTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
-		//mTex->Scale(Vector2(2.3f, 2.3f));
-
-		//mRedShip = new Texture("player.png");
-		//mRedShip->Position(Vector2(Graphics::SCREEN_WIDTH * 0.35f, Graphics::SCREEN_HEIGHT * 0.49f));
-		//mRedShip->Scale(Vector2(0.5f, 0.5f));
-
-		//mFontTex = new Texture("Caspiran Galaga", "ToThePoint.ttf", 100, { 0, 0, 225 });
-		//mFontTex->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f));
 
 		mBackground2 = new Texture("background.png");
 		mBackground2->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
@@ -120,54 +97,14 @@ namespace SDLFramework {
 		
 		//mAudioManager->PlayMusic("BeachAmbience.mp3", -1);
 
-		//mPhysone = new PhysicsEntity();
-		//mPhysone->Position(Vector2(Graphics::SCREEN_WIDTH * 0.3f, Graphics::SCREEN_HEIGHT * 0.5f));
-		//mPhysone->AddCollider(new BoxCollider(Vector2(20.0f, 20.0f)));
-		//mPhysone->mId = mPhysicsManager->RegisterEntity(mPhysone, PhysicsManager::CollisionLayers::Friendly);
-
-		//
-
-		//mPhystwo = new PhysicsEntity();
-		//mPhystwo->Position(Vector2(Graphics::SCREEN_WIDTH * 0.6f, Graphics::SCREEN_HEIGHT * 0.5f));
-		//mPhystwo->AddCollider(new BoxCollider(Vector2(20.0f, 20.0f)));
-		//mPhystwo->mId = mPhysicsManager->RegisterEntity(mPhystwo, PhysicsManager::CollisionLayers::Hostile);
-
-
-
-		//mAudioManager->PlayMusic("TavernAmbience.mp3", -1);
-		//mGreenGalaga = new Texture("SpriteSheet.png", 182, 100, 20, 20);
-		//mGreenGalaga->Position(Vector2(Graphics::SCREEN_WIDTH * 0.3f, Graphics::SCREEN_HEIGHT * 0.49f));
-		//mGreenGalaga->Scale(Vector2(2.0f, 2.0f));
-
-		//mPurpleGalaga = new Texture("SpriteSheet.png", 182, 125, 20, 20);
-		//mPurpleGalaga->Position(Vector2(Graphics::SCREEN_WIDTH * 0.2f, Graphics::SCREEN_HEIGHT * 0.49f));
-		//mPurpleGalaga->Scale(Vector2(2.0f, 2.0f));
-		
 
 
 	}
 
 	GameManager::~GameManager() {
 		//Release Variables
-		delete mTex;
-		mTex = nullptr;
-
-		delete mRedShip;
-		mRedShip = nullptr;
-
-		delete mFontTex;
-		mFontTex = nullptr;
-
 		delete mBackground2;
 		mBackground2 = nullptr;
-
-		delete mPhysone;
-		mPhysone = nullptr;
-
-		delete mPhystwo;
-		mPhystwo = nullptr;
-
-
 
 		//Release Modules
 		Graphics::Release();

@@ -2,6 +2,7 @@
 #include "PlaySideBar.h"
 #include "BackgroundStars.h"
 #include "BackgroundMeteors.h"
+#include "BackgroundPlanet.h"
 #include "Scoreboard.h"
 #include "Player.h"
 
@@ -26,6 +27,7 @@ private:
 	PlaySideBar* mSideBar;
 	BackgroundStars* mBackgroundStars;
 	BackgroundMeteors* mBackgroundMeteors;
+	BackgroundPlanets* mBackgroundPlanets;
 
 	Player* mPlayer;
 

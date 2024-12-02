@@ -25,11 +25,13 @@ private:
 
 	Texture* mBackground;
 
+	Texture* mHighScorePanel;
 	Texture* mHighLabel;
 	Texture* mScoreLabel;
 	Scoreboard* mHighScoreBoard;
 
 	Texture* mOneUpLabel;
+	Texture* mPlayerScorePanel;
 	float mBlinkTimer;
 	float mBlinkInterval;
 	bool mOneUpLabelVisible;
@@ -37,6 +39,8 @@ private:
 	Scoreboard* mPlayerOneScore;
 
 	GameEntity* mShips;
+	Texture* mLivesPanel;
+	Texture* mLivesLabel;
 	Texture* mShipTextures[MAX_SHIP_TEXTURES];
 	Scoreboard* mTotalShipsLabel;
 	int mTotalShips;

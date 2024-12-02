@@ -1,18 +1,18 @@
-#include "Meteor.h"
+#include "Planet.h"
 
-bool Meteor::sScroll = false;
+bool Planet::sScroll = false;
 
-void Meteor::Scroll(bool scroll) {
+void Planet::Scroll(bool scroll) {
 	sScroll = scroll;
 }
 
-Meteor::Meteor(int layer) : Texture("Meteors.png", 0, 0, 50, 50) {
+Planet::Planet(int layer) : Texture("Planets.png", 0, 0, 315, 314) {
 	mTimer = Timer::Instance();
 	mRandom = Random::Instance();
 
-	int meteor = mRandom->RandomInt() % 4;
+	int planet = mRandom->RandomInt() % 2;
 
-	mSourceRect.x = meteor * 4;
+	mSourceRect.x = planet * 2;
 
 	Position(Vector2((float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_WIDTH),
 		(float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_HEIGHT)));
@@ -20,20 +20,18 @@ Meteor::Meteor(int layer) : Texture("Meteors.png", 0, 0, 50, 50) {
 	float inverseLayer = 1.0f / layer;
 	Scale(Vec2_One * inverseLayer);
 
-	mScrollSpeed = 26.0f / layer;
-	mFlickerTime = 0.0f;
-	mFlickerSpeed = mRandom->RandomRange(0.95f, 1.0f);
+	mScrollSpeed = 0.25f / layer;
 
 	mVisible = true;
 
 }
 
-Meteor::~Meteor() {
+Planet::~Planet() {
 	mTimer = nullptr;
 	mRandom = nullptr;
 }
 
-void Meteor::ScrollMeteor() {
+void Planet::ScrollPlanet() {
 	Translate(Vec2_Up * mScrollSpeed);
 
 	Vector2 pos = getPosition(Local);
@@ -44,13 +42,13 @@ void Meteor::ScrollMeteor() {
 	}
 }
 
-void Meteor::Update() {
+void Planet::Update() {
 	if (sScroll == true) {
-		ScrollMeteor();
+		ScrollPlanet();
 	}
 }
 
-void Meteor::Render() {
+void Planet::Render() {
 	Texture::Render();
-	
+
 }

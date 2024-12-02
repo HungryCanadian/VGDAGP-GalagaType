@@ -10,6 +10,6 @@ public:
 	void Render();
 
 private:
-	static const int METEOR_COUNT = 3;
+	static const int METEOR_COUNT = 1;
 	Meteor* mMeteor[METEOR_COUNT];
 };

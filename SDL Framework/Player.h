@@ -40,7 +40,10 @@ private:
 	bool mVisible;
 	bool mAnimating;
 
-	Texture* mShip;
+	Texture* mIdleShip;
+	Texture* mLeftShip;
+	Texture* mRightShip;
+	Texture* mCurrentShip;
 	AnimatedTexture* mDeathAnimation;
 
 	int mScore;

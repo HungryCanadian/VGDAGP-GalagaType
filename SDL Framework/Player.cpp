@@ -4,16 +4,22 @@
 void Player::HandleMovement() {
 	if (mInput->KeyDown(SDL_SCANCODE_RIGHT) || mInput->KeyDown(SDL_SCANCODE_D)) {
 		Translate(Vec2_Right * mMoveSpeed * mTimer->DeltaTime(), World);
+		mCurrentShip = mRightShip;
 	}
 	else if (mInput->KeyDown(SDL_SCANCODE_LEFT) || mInput->KeyDown(SDL_SCANCODE_A)) {
 		Translate(Vec2_Left * mMoveSpeed * mTimer->DeltaTime(), World);
+		mCurrentShip = mLeftShip;
+	}
+	else {
+		mCurrentShip = mIdleShip;  // Switch to idle Ship if no movement
 	}
 
 	Vector2 pos = getPosition(Local);
-	if (pos.x < mMoveBounds.x ) {
+
+	if (pos.x < mMoveBounds.x + 15.5f) {
 		pos.x = mMoveBounds.x;
 	}
-	else if (pos.x > mMoveBounds.y) {
+	else if (pos.x > mMoveBounds.y + 15.0f) {
 		pos.x = mMoveBounds.y;
 	}
 
@@ -30,15 +36,27 @@ Player::Player() {
 	mWasHit = false;
 
 	mScore = 0;
-	mLives = 1;
+	mLives = 3;
 
 	mMoveSpeed = 100.0f;
 	mMoveBounds = Vector2(0.0f, 800.0f);
 
-	mShip = new Texture("player.png");
-	mShip->Parent(this);
-	mShip->Position(Vec2_Zero);
-	mShip->Scale(Vector2(0.6f, 0.6f));
+	mIdleShip = new Texture("player.png");
+	mIdleShip->Parent(this);
+	mIdleShip->Position(Vec2_Zero);
+	mIdleShip->Scale(Vector2(0.6f, 0.6f));
+
+	mLeftShip = new Texture("playerLeft.png");
+	mLeftShip->Parent(this);
+	mLeftShip->Position(Vec2_Zero);
+	mLeftShip->Scale(Vector2(0.6f, 0.6f));
+
+	mRightShip = new Texture("playerRight.png");
+	mRightShip->Parent(this);
+	mRightShip->Position(Vec2_Zero);
+	mRightShip->Scale(Vector2(0.6f, 0.6f));
+
+	mCurrentShip = mIdleShip;
 
 	mDeathAnimation = new AnimatedTexture("PlayerExplosion.png", 0, 0, 128, 128, 4, 1.0f, AnimatedTexture::Horizontal);
 	mDeathAnimation->Parent(this);
@@ -59,9 +77,16 @@ Player::~Player() {
 	mTimer = nullptr;
 	mInput = nullptr;
 	mAudio = nullptr;
+	mCurrentShip = nullptr;
 
-	delete mShip;
-	mShip = nullptr;
+	delete mIdleShip;
+	mIdleShip = nullptr;
+
+	delete mLeftShip;
+	mLeftShip = nullptr;
+
+	delete mRightShip;
+	mRightShip = nullptr;
 
 	delete mDeathAnimation;
 	mDeathAnimation = nullptr;
@@ -104,7 +129,7 @@ void Player::Hit(PhysicsEntity* other) {
 	mAnimating = true;
 	mDeathAnimation->ResetAnimation();
 	mWasHit = true;
-	//TODO: Add Audio to death
+	//mAudio->PlaySFX("PlayerExplosion.wav");
 }
 
 void Player::Update() {
@@ -125,7 +150,7 @@ void Player::Render() {
 			mDeathAnimation->Render();
 		}
 		else {
-			mShip->Render();
+			mCurrentShip->Render();
 
 		}
 		PhysicsEntity::Render();

@@ -17,6 +17,8 @@ void ScreenManager::Release() {
 
 ScreenManager::ScreenManager() {
 	mBackgroundStars = BackgroundStars::Instance();
+	mBackgroundMeteors = BackgroundMeteors::Instance();
+	mBackgroundPlanets = BackgroundPlanets::Instance();
 	mInput = InputManager::Instance();
 	//Screens
 	mStartScreen = new StartScreen();
@@ -31,6 +33,12 @@ ScreenManager::~ScreenManager() {
 	BackgroundStars::Release();
 	mBackgroundStars = nullptr;
 
+	BackgroundMeteors::Release();
+	mBackgroundMeteors = nullptr;
+
+	BackgroundPlanets::Release();
+	mBackgroundPlanets = nullptr;
+
 	delete mStartScreen;
 	mStartScreen = nullptr;
 
@@ -39,13 +47,17 @@ ScreenManager::~ScreenManager() {
 }
 
 void ScreenManager::Update() {
+	mBackgroundPlanets->Update();
 	mBackgroundStars->Update();
 	mBackgroundMeteors->Update();
+	
 
 	switch (mCurrentScreen) {
 	case ScreenManager::Start:
+		mBackgroundPlanets->Scroll(false);
 		mBackgroundStars->Scroll(false);
-		mBackgroundMeteors->Scroll(false);
+		mBackgroundMeteors->Scroll(true);
+		
 		mStartScreen->Update();
 
 		if (mInput->KeyPressed(SDL_SCANCODE_RETURN)) {
@@ -76,8 +88,10 @@ void ScreenManager::Update() {
 }
 
 void ScreenManager::Render() {
+	mBackgroundPlanets->Render();
 	mBackgroundStars->Render();
 	mBackgroundMeteors->Render();
+	
 
 	switch (mCurrentScreen) {
 	case ScreenManager::Start:

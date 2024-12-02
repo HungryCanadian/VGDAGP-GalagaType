@@ -132,6 +132,15 @@
     <ClCompile Include="Known Bugs.cpp">
       <Filter>Caspira</Filter>
     </ClCompile>
+    <ClCompile Include="Planet.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetLayer.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundPlanet.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -222,6 +231,15 @@
       <Filter>Caspira\Header</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundMeteors.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Planet.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetLayer.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundPlanet.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
   </ItemGroup>

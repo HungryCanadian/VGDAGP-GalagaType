@@ -49,7 +49,8 @@ PlayScreen::~PlayScreen() {
 void PlayScreen::StartNewGame() {
 	mSideBar->SetHighScore(3080);
 	mStars->Scroll(false);
-	mMeteors->Scroll(false);
+	mMeteors->Scroll(true);
+	mPlanets->Scroll(false);
 	mGameStarted = false;
 	mLevelStarted = false;
 	mLevelStartTimer = 0.0f;
@@ -104,6 +105,7 @@ void PlayScreen::Update() {
 		if (mCurrentStage > 0) {
 			mSideBar->Update();
 		}
+		mPlayer->Update();
 	}
 	else {
 		if (!Mix_PlayingMusic()) {
@@ -111,7 +113,7 @@ void PlayScreen::Update() {
 			
 		}
 	}
-	mPlayer->Update();
+	
 	
 }
 

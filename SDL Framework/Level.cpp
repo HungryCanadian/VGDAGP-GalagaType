@@ -10,6 +10,7 @@ Level::Level(int stage, PlaySideBar* sideBar, Player* player) {
 	mSideBar->SetLevel(stage);
 	mBackgroundStars = BackgroundStars::Instance();
 	mBackgroundMeteors = BackgroundMeteors::Instance();
+	mBackgroundPlanets = BackgroundPlanets::Instance();
 
 	mStage = stage;
 	mStageStarted = false;
@@ -57,6 +58,7 @@ Level::~Level() {
 	mSideBar = nullptr;
 	mBackgroundStars = nullptr;
 	mBackgroundMeteors = nullptr;
+	mBackgroundPlanets = nullptr;
 	mPlayer = nullptr;
 
 	delete mStageLabel;
@@ -79,7 +81,7 @@ void Level::HandleStartLabels() {
 
 	if (mLabelTimer >= mStageLabelOffScreen) {
 		mBackgroundStars->Scroll(true);
-		mBackgroundMeteors->Scroll(true);
+		mBackgroundPlanets->Scroll(true);
 		mPlayer->Active(true);
 		mPlayer->Visible(true);
 		if (mStage > 1) {
@@ -105,6 +107,7 @@ void Level::HandleCollisions() {
 			mRespawnTimer = 0.0f;
 			mPlayer->Active(false);
 			mBackgroundStars->Scroll(false);
+			mBackgroundPlanets->Scroll(false);
 		}
 	}
 }
@@ -125,11 +128,12 @@ void Level::HandlePlayerDeath() {
 				mPlayer->Visible(true);
 				mPlayerHit = false;
 				mBackgroundStars->Scroll(true);
+				mBackgroundPlanets->Scroll(true);
 			}
 		}
 		else {
 			//this is GAME OVER!
-			if (mGameOverTimer = 0.0f) {
+			if (mGameOverTimer == 0.0f) {
 				mPlayer->Visible(false);
 			}
 
