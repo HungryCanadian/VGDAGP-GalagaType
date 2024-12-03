@@ -20,7 +20,7 @@ StartScreen::StartScreen() {
 	mTopScore = new Scoreboard();
 
 	//Background Entities TODO: Uncomment the Audiomanager down a line.
-	//mAudioManager->PlayMusic("5. Dread March .mp3", -1);
+	mAudioManager->PlayMusic("8bit_mix_5.wav", -1);
 	mBackground = new Texture("4.png");
 	mBackground->Position(Graphics::SCREEN_HEIGHT * 0.5f, Graphics::SCREEN_WIDTH * 0.5f);
 	
@@ -49,18 +49,18 @@ StartScreen::StartScreen() {
 
 	//Logo Texture
 	mLogoSpace = new GameEntity(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.20f);
-	//mLogo = new Texture("Caspiran", "ToThePoint.ttf", 152, { 0,0,200 });;
-	//mLogo2 = new Texture("Galaga", "ToThePoint.ttf", 152, { 0,0,200 });;
-	mAnimatedLogo = new AnimatedTexture("GalagaLogo.png", 0, 0, 360, 180,3, 0.4f,AnimatedTexture::Vertical);
+	mLogo = new Texture("Caspiran", "ToThePoint.ttf", 152, { 0,0,200 });;
+	mLogo2 = new Texture("Galaga", "ToThePoint.ttf", 152, { 0,0,200 });;
+	//mAnimatedLogo = new AnimatedTexture("CaspiraLogo.png", 0, 0, 360, 180,3, 0.4f,AnimatedTexture::Vertical);
 
 	mLogoSpace->Parent(this);
-	//mLogo->Parent(mLogoSpace);
-	//mLogo2->Parent(mLogoSpace);
-	mAnimatedLogo->Parent(mLogoSpace);
+	mLogo->Parent(mLogoSpace);
+	mLogo2->Parent(mLogoSpace);
+	//mAnimatedLogo->Parent(mLogoSpace);
 
-	//mLogo->Position(Vec2_Zero);
-	//mLogo2->Position(0.0f, 125.0f);
-	mAnimatedLogo->Position(0.0f, 65.0f);
+	mLogo->Position(Vec2_Zero);
+	mLogo2->Position(0.0f, 125.0f);
+	//mAnimatedLogo->Position(0.0f, 65.0f);
 
 	//Play Bar Entities
 	mPlayModes->Parent(this);
@@ -142,7 +142,7 @@ void StartScreen::Update() {
 		}
 	}
 	else {
-		mAnimatedLogo->Update();
+		//mAnimatedLogo->Update();
 
 		if (mInputManager->KeyPressed(SDL_SCANCODE_DOWN)) {
 			ChangeSelectedMode(1);
@@ -174,9 +174,9 @@ void StartScreen::Render() {
 	mDates->Render();
 	mRights->Render();
 	//Logo Entities
-	//mLogo->Render();
-	//mLogo2->Render();
-	mAnimatedLogo->Render();
+	mLogo->Render();
+	mLogo2->Render();
+	//mAnimatedLogo->Render();
 }
 
 StartScreen::~StartScreen() {

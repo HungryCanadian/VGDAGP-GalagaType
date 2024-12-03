@@ -21,6 +21,8 @@ PlayScreen::PlayScreen() {
 	mLevelStarted = false;
 
 	mPlayer = nullptr;
+
+	Enemy::CreatePaths();
 	
 
 }
@@ -55,7 +57,7 @@ void PlayScreen::StartNewGame() {
 	mLevelStarted = false;
 	mLevelStartTimer = 0.0f;
 	mCurrentStage = 0;
-	//mAudio->PlayMusic("GameStart.wav", 0);
+	mAudio->PlayMusic("GameStart.mp3", 0);
 
 	delete mPlayer;
 	mPlayer = new Player();

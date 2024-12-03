@@ -5,6 +5,7 @@
 #include "BackgroundPlanet.h"
 #include "Scoreboard.h"
 #include "Player.h"
+#include "Enemy.h"
 
 using namespace SDLFramework;
 
@@ -62,6 +63,8 @@ private:
 	void HandlePlayerDeath();
 
 	void StartStage();
+
+	Enemy* mEnemy;
 
 	
 };

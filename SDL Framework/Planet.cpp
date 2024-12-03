@@ -6,7 +6,7 @@ void Planet::Scroll(bool scroll) {
 	sScroll = scroll;
 }
 
-Planet::Planet(int layer) : Texture("Planets.png", 0, 0, 315, 314) {
+Planet::Planet(int layer) : Texture("Planets.png", 0, 0, 313, 314) {
 	mTimer = Timer::Instance();
 	mRandom = Random::Instance();
 

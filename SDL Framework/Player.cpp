@@ -11,7 +11,7 @@ void Player::HandleMovement() {
 		mCurrentShip = mLeftShip;
 	}
 	else {
-		mCurrentShip = mIdleShip;  // Switch to idle Ship if no movement
+		mCurrentShip = mIdleShip;  
 	}
 
 	Vector2 pos = getPosition(Local);
@@ -24,6 +24,18 @@ void Player::HandleMovement() {
 	}
 
 	Position(pos);
+}
+
+void Player::HandleFiring() {
+	if (mInput->KeyPressed(SDL_SCANCODE_SPACE)) {
+		for (int i = 0; i < MAX_BULLETS; i++) {
+			if (!mBullets[i]->getActive()) {
+				mBullets[i]->Fire(getPosition());
+				mAudio->PlaySFX("Fire.wav",0);
+				break;
+			}
+		}
+	}
 }
 
 Player::Player() {
@@ -70,7 +82,9 @@ Player::Player() {
 
 	mId = PhysicsManager::Instance()->RegisterEntity(this, PhysicsManager::CollisionLayers::Friendly);
 
-
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		mBullets[i] = new Bullet(true);
+	}
 }
 
 Player::~Player() {
@@ -90,6 +104,11 @@ Player::~Player() {
 
 	delete mDeathAnimation;
 	mDeathAnimation = nullptr;
+
+	for (auto bullet : mBullets) {
+		delete bullet;
+		bullet = nullptr;
+	}
 }
 
 void Player::Visible(bool visible) {
@@ -140,7 +159,12 @@ void Player::Update() {
 	else {
 		if (getActive()) {
 			HandleMovement();
+			HandleFiring();
 		}
+	}
+
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		mBullets[i]->Update();
 	}
 }
 
@@ -154,5 +178,9 @@ void Player::Render() {
 
 		}
 		PhysicsEntity::Render();
+	}
+
+	for (int i = 0; i < MAX_BULLETS; i++) {
+		mBullets[i]->Render();
 	}
 }

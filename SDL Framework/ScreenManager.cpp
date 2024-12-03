@@ -58,6 +58,7 @@ void ScreenManager::Update() {
 		mBackgroundStars->Scroll(false);
 		mBackgroundMeteors->Scroll(true);
 		
+		
 		mStartScreen->Update();
 
 		if (mInput->KeyPressed(SDL_SCANCODE_RETURN)) {
