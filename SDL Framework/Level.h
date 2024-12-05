@@ -3,7 +3,6 @@
 #include "BackgroundStars.h"
 #include "BackgroundMeteors.h"
 #include "BackgroundPlanet.h"
-#include "Scoreboard.h"
 #include "Player.h"
 #include "Enemy.h"
 
@@ -63,8 +62,5 @@ private:
 	void HandlePlayerDeath();
 
 	void StartStage();
-
-	Enemy* mEnemy;
-
 	
 };

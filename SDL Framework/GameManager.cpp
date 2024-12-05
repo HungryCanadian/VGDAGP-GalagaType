@@ -95,7 +95,7 @@ namespace SDLFramework {
 		mBackground2->Position(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
 		mBackground2->Scale(Vector2(1.1f, 0.6f));
 		
-		//mAudioManager->PlayMusic("BeachAmbience.mp3", -1);
+
 
 
 

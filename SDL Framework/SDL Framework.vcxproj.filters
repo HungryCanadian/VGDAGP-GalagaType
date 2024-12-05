@@ -150,6 +150,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Caspira\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Formation.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -258,6 +261,9 @@
       <Filter>Caspira\Header</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Formation.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
   </ItemGroup>
