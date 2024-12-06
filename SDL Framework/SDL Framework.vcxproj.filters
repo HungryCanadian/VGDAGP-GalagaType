@@ -153,6 +153,12 @@
     <ClCompile Include="Formation.cpp">
       <Filter>Caspira\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Butterfly.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Wasp.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -264,6 +270,12 @@
       <Filter>Caspira\Header</Filter>
     </ClInclude>
     <ClInclude Include="Formation.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Butterfly.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Wasp.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
   </ItemGroup>

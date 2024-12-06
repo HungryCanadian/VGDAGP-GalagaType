@@ -74,7 +74,7 @@ void Enemy::HandleFlyInState() {
 	if (mCurrentWaypoint < sPaths[mCurrentPath].size()) {
 		Vector2 dist = sPaths[mCurrentPath][mCurrentWaypoint] - getPosition();
 		Translate(dist.Normalized() * mSpeed * mTimer->DeltaTime(), World);
-		Rotate(atan2(dist.y, dist.x) * RAD_TO_DEG + 90.0f);
+		Rotation(atan2(dist.y, dist.x) * RAD_TO_DEG + 90.0f); //This was Rotate instead of Rotation (if beyblade mode still exists this wasnt it)
 
 		if ((sPaths[mCurrentPath][mCurrentWaypoint] - getPosition()).MagnitudeSqr() < EPSILON * mSpeed / 25.0f) {
 			mCurrentWaypoint++;
@@ -172,10 +172,8 @@ Enemy::Enemy(int path, int index, bool challenge) : mCurrentPath(path), mIndex(i
 	Position(sPaths[mCurrentPath][0]);
 
 	mTexture = nullptr;
-	mTexture->Parent(this);
-	mTexture->Position(Vec2_Zero);
 
-	mSpeed = 100.0f;
+	mSpeed = 450.0f;
 }
 
 Enemy::~Enemy() {

@@ -4,7 +4,7 @@
 #include "BackgroundMeteors.h"
 #include "BackgroundPlanet.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "Butterfly.h"
 
 using namespace SDLFramework;
 
@@ -30,6 +30,12 @@ private:
 	BackgroundPlanets* mBackgroundPlanets;
 
 	Player* mPlayer;
+	Formation* mFormation;
+
+	const int MAX_BUTTERFLIES = 16;
+	
+	int mButterflyCount;
+	std::vector<Enemy*> mEnemies;
 
 	int mStage;
 	bool mStageStarted;
@@ -63,4 +69,7 @@ private:
 
 	void StartStage();
 	
+	void HandleEnemySpawning();
+	void HandleEnemyFormation();
+	void HandleEnemyDiving();
 };

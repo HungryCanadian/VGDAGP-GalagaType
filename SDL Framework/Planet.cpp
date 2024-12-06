@@ -6,11 +6,11 @@ void Planet::Scroll(bool scroll) {
 	sScroll = scroll;
 }
 
-Planet::Planet(int layer) : Texture("Planets.png", 0, 0, 313, 314) {
+Planet::Planet(int layer) : Texture("Planets.png", 0, 0, 312, 314) {
 	mTimer = Timer::Instance();
 	mRandom = Random::Instance();
 
-	int planet = mRandom->RandomInt() % 2;
+	int planet = mRandom->RandomInt() % 3;
 
 	mSourceRect.x = planet * 2;
 
@@ -35,8 +35,8 @@ void Planet::ScrollPlanet() {
 	Translate(Vec2_Up * mScrollSpeed);
 
 	Vector2 pos = getPosition(Local);
-	if (pos.y > Graphics::Instance()->SCREEN_HEIGHT) {
-		pos.y = 0.0f;
+	if (pos.y > Graphics::Instance()->SCREEN_HEIGHT + 200.0f) {
+		pos.y = -200.0f;
 		pos.x = (float)(mRandom->RandomInt() % Graphics::Instance()->SCREEN_WIDTH);
 		Position(pos);
 	}
