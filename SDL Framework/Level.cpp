@@ -57,6 +57,7 @@ Level::Level(int stage, PlaySideBar* sideBar, Player* player) {
 
 
 	mButterflyCount = 0;
+	mWaspCount = 0;
 
 }
 
@@ -166,12 +167,15 @@ void Level::HandleEnemySpawning() {
 	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_S) && mButterflyCount < MAX_BUTTERFLIES) {
 		mEnemies.push_back(new Butterfly(0, mButterflyCount++, false));
 	}
+	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_W) && mWaspCount < MAX_WASPS) {
+		mEnemies.push_back(new Wasp(0, mWaspCount++, false, false));
+	}
 }
 
 void Level::HandleEnemyFormation() {
 	mFormation->Update();
 
-	if (mButterflyCount == MAX_BUTTERFLIES) {
+	if (mButterflyCount == MAX_BUTTERFLIES && mWaspCount == MAX_WASPS) {
 		bool flyin = false;
 		for (auto enemy : mEnemies) {
 			if (enemy->CurrentState() == Enemy::FlyIn) {
@@ -184,9 +188,12 @@ void Level::HandleEnemyFormation() {
 			mFormation->Lock();
 		}
 	}
+	
 }
 
-void Level::HandleEnemyDiving() { }
+void Level::HandleEnemyDiving() { 
+
+}
 
 
 
