@@ -32,7 +32,7 @@ protected:
 	static Player* sPlayer;
 	Timer* mTimer;
 
-	Texture* mTexture;
+	Texture* mTextures[2];
 	States mCurrentState;
 	Types mType;
 

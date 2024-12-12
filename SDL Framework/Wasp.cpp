@@ -90,19 +90,19 @@ void Wasp::HandleDiveState() {
 	int currentPath = mIndex % 2;
 
 	if (mCurrentWaypoint < sDivePaths[currentPath].size()) {
-		//Follow Dive path
+		//Follow dive path
 		Vector2 waypointPos = mDiveStartPosition + sDivePaths[currentPath][mCurrentWaypoint];
 		Vector2 dist = waypointPos - getPosition();
 
 		Translate(dist.Normalized() * mSpeed * mTimer->DeltaTime(), World);
 		Rotation(atan2(dist.y, dist.x) * RAD_TO_DEG + 90.0f);
 
-		if ((waypointPos - getPosition()).MagnitudeSqr() < EPSILON * mSpeed / 25.0f) {
+		if ((waypointPos - getPosition()).MagnitudeSqr() < EPSILON * mSpeed / 25) {
 			mCurrentWaypoint++;
 		}
 	}
 	else {
-		//Return to formation
+		//Return to Formation
 		Vector2 dist = WorldFormationPosition() - getPosition();
 
 		Translate(dist.Normalized() * mSpeed * mTimer->DeltaTime(), World);
@@ -119,12 +119,12 @@ void Wasp::HandleDeadState() { }
 void Wasp::RenderDeadState() { }
 
 void Wasp::RenderDiveState() {
-	mTexture->Render();
+	mTextures[0]->Render();
 
-	//Debug Render of dive path
+	//debug render of the dive path
+	//TODO: Comment out the below for finished product!
 	int currentPath = mIndex % 2;
-
-	for (int i = 0; i < sDivePaths[currentPath].size() - 1;) {
+	for (int i = 0; i < sDivePaths[currentPath].size() - 1; i++) {
 		Graphics::Instance()->DrawLine(
 			mDiveStartPosition.x + sDivePaths[currentPath][i].x,
 			mDiveStartPosition.y + sDivePaths[currentPath][i].y,
@@ -133,22 +133,29 @@ void Wasp::RenderDiveState() {
 		);
 	}
 
-	//Debug Render of the return to formation path.
+	//debug render of the return path
+	//TODO: If we encounter weird behaviours with the return path drawing
+	//COME BACK HERE
 	Vector2 finalPos = WorldFormationPosition();
-	Vector2 pathEndPos = mDiveStartPosition + sDivePaths[currentPath][sDivePaths[currentPath].size() - 1];
+	auto currentDivePath = sDivePaths[currentPath];
+	Vector2 pathEndPos = mDiveStartPosition + currentDivePath[currentDivePath.size() - 1];
 
 	Graphics::Instance()->DrawLine(
 		pathEndPos.x,
 		pathEndPos.y,
 		finalPos.x,
 		finalPos.y
-		);
+	);
 }
 
 Wasp::Wasp(int path, int index, bool challenge, bool diver) : Enemy(path, index, challenge), mDiver(diver) {
-	mTexture = new Texture("Animatedenemies.png", 0, 40, 52, 40);
-	mTexture->Parent(this);
-	mTexture->Position(Vec2_Zero);
+	mTextures[0]= new Texture("AnimatedEnemies.png", 0, 40, 52, 40);
+	mTextures[1] = new Texture("AnimatedEnemies.png", 52, 40, 52, 40);
+
+	for (auto texture : mTextures) {
+		texture->Parent(this);
+		texture->Position(Vec2_Zero);
+	}
 	
 	mType = Enemy::Wasp;
 }

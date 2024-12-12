@@ -24,6 +24,8 @@ PlayScreen::PlayScreen() {
 
 	Enemy::CreatePaths();
 	Wasp::CreateDivePaths();
+	Butterfly::CreateDivePaths();
+	Boss::CreateDivePaths();
 	
 
 }

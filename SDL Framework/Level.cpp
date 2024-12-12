@@ -170,12 +170,15 @@ void Level::HandleEnemySpawning() {
 	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_W) && mWaspCount < MAX_WASPS) {
 		mEnemies.push_back(new Wasp(0, mWaspCount++, false, false));
 	}
+	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_F) && mBossCount < MAX_BOSSES) {
+		mEnemies.push_back(new Boss(0, mBossCount++, false));
+	}
 }
 
 void Level::HandleEnemyFormation() {
 	mFormation->Update();
 
-	if (mButterflyCount == MAX_BUTTERFLIES && mWaspCount == MAX_WASPS) {
+	if (mButterflyCount == MAX_BUTTERFLIES && mWaspCount == MAX_WASPS && mBossCount == MAX_BOSSES) {
 		bool flyin = false;
 		for (auto enemy : mEnemies) {
 			if (enemy->CurrentState() == Enemy::FlyIn) {
@@ -192,7 +195,47 @@ void Level::HandleEnemyFormation() {
 }
 
 void Level::HandleEnemyDiving() { 
+	if (mFormation->Locked()) {
+		if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_V)) {
+			for (auto enemy : mEnemies) {
+				if (enemy->Type() == Enemy::Wasp && enemy->CurrentState() == Enemy::InFormation) {
+					enemy->Dive();
+					break;
+				}
+			}
+		}
+	}
+	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_B)) {
+		for (auto enemy : mEnemies) {
+			if (enemy->Type() == Enemy::Butterfly && enemy->CurrentState() == Enemy::InFormation) {
+				enemy->Dive();
+				break;
+			}
+		}
+	}
+	if (InputManager::Instance()->KeyPressed(SDL_SCANCODE_H)) {
+		for (auto enemy : mEnemies) {
+			if (enemy->Type() == Enemy::Boss && enemy->CurrentState() == Enemy::InFormation) {
+				enemy->Dive();
 
+				int index = enemy->Index();
+				int firstEscortIndex = (index % 2 == 0) ? (index * 2) : (index * 2 - 1);
+				int secondEscortIndex = firstEscortIndex + 4;
+
+				for (auto butterfly : mEnemies) {
+					//Verify enemy is butterfly in formation
+					//and has either the first or second escort index
+					if (butterfly->Type() == Enemy::Butterfly &&
+						butterfly->CurrentState() == Enemy::InFormation && 
+						(butterfly->Index() == firstEscortIndex || 
+						butterfly->Index() == secondEscortIndex)) {
+						butterfly->Dive(1);
+					}
+				}
+				break;
+			}
+		}
+	}
 }
 
 

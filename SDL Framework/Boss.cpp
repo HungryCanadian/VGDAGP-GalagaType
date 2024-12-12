@@ -1,76 +1,10 @@
-#include "Butterfly.h"
+#include "Boss.h"
 
-std::vector<std::vector<Vector2>> Butterfly::sDivePaths;
+std::vector<std::vector<Vector2>> Boss::sDivePaths;
 
-void Butterfly::CreateDivePaths() {
+void Boss::CreateDivePaths() {
 	int currentPath = 0;
 	BezierPath* path = new BezierPath();
-
-	path->AddCurve({
-		Vector2(0.0f, 0.0f),
-		Vector2(0.0f, -45.0f),
-		Vector2(-60.0f, -45.0f),
-		Vector2(-60.f, 0.0f) }, 15);
-	path->AddCurve({
-		Vector2(-60.0f, 0.0f),
-		Vector2(-60.0f, 80.0f),
-		Vector2(200.0f, 125.0f),
-		Vector2(200.0f, 200.0f) }, 15);
-	path->AddCurve({
-		Vector2(200.0f, 200.0f),
-		Vector2(200.0f, 275.0f),
-		Vector2(175.0f, 250.0f),
-		Vector2(175.0f, 325.0f) }, 15);
-	path->AddCurve({
-		Vector2(175.0f, 325.0f),
-		Vector2(175.0f, 425.0f),
-		Vector2(375.0f, 425.0f),
-		Vector2(375.0f, 525.0f) }, 15);
-	path->AddCurve({
-		Vector2(375.0f, 525.0f),
-		Vector2(375.0f, 575.0f),
-		Vector2(300.0f, 625.0f),
-		Vector2(300.0f, 775.0f) }, 15);
-
-	sDivePaths.push_back(std::vector<Vector2>());
-	path->Sample(&sDivePaths[currentPath]);
-	delete path;
-
-	currentPath = 1;
-	path = new BezierPath();
-
-	path->AddCurve({
-		Vector2(0.0f, 0.0f),
-		Vector2(0.0f, -45.0f),
-		Vector2(60.0f, -45.0f),
-		Vector2(60.f, 0.0f) }, 15);
-	path->AddCurve({
-		Vector2(60.0f, 0.0f),
-		Vector2(60.0f, 80.0f),
-		Vector2(-200.0f, 125.0f),
-		Vector2(-200.0f, 200.0f) }, 15);
-	path->AddCurve({
-		Vector2(-200.0f, 200.0f),
-		Vector2(-200.0f, 275.0f),
-		Vector2(-175.0f, 250.0f),
-		Vector2(-175.0f, 325.0f) }, 15);
-	path->AddCurve({
-		Vector2(-175.0f, 325.0f),
-		Vector2(-175.0f, 425.0f),
-		Vector2(-375.0f, 425.0f),
-		Vector2(-375.0f, 525.0f) }, 15);
-	path->AddCurve({
-		Vector2(-375.0f, 525.0f),
-		Vector2(-375.0f, 575.0f),
-		Vector2(-300.0f, 625.0f),
-		Vector2(-300.0f, 775.0f) }, 15);
-
-	sDivePaths.push_back(std::vector<Vector2>());
-	path->Sample(&sDivePaths[currentPath]);
-	delete path;
-
-	currentPath = 2;
-	path = new BezierPath();
 
 	path->AddCurve({
 		Vector2(0.0f, 0.0f),
@@ -107,7 +41,7 @@ void Butterfly::CreateDivePaths() {
 	path->Sample(&sDivePaths[currentPath]);
 	delete path;
 
-	currentPath = 3;
+	currentPath = 1;
 	path = new BezierPath();
 
 	path->AddCurve({
@@ -146,28 +80,28 @@ void Butterfly::CreateDivePaths() {
 	delete path;
 }
 
-Vector2 Butterfly::LocalFormationPosition() {
+Vector2 Boss::LocalFormationPosition() {
 	Vector2 retVal;
 
 	int dir = mIndex % 2 == 0 ? -1 : 1;
 
-	retVal.x = (sFormation->GridSize().x + sFormation->GridSize().x * 2 * (mIndex / 4)) * (float)dir;
-	retVal.y = sFormation->GridSize().y * ((mIndex % 4) / 2);
+	retVal.x = (sFormation->GridSize().x + sFormation->GridSize().x * 2 * (mIndex / 2)) * (float)dir;
+	retVal.y = -sFormation->GridSize().y;
 
 
 	return retVal;
 }
 
-void Butterfly::Dive(int type) {
-	mEscort = type != 0;
+void Boss::Dive(int type) {
+	mCaptureDive = type != 0;
 
 	Enemy::Dive();
 }
 
-void Butterfly::HandleDiveState() {
+void Boss::HandleDiveState() { 
 	int currentPath = mIndex % 2;
 
-	if (mEscort) {
+	if (mCaptureDive) {
 		currentPath += 2;
 	}
 	if (mCurrentWaypoint < sDivePaths[currentPath].size()) {
@@ -195,20 +129,20 @@ void Butterfly::HandleDiveState() {
 	}
 }
 
-void Butterfly::HandleDeadState() {
+void Boss::HandleDeadState() { }
 
-}
-
-void Butterfly::RenderDiveState() {
+void Boss::RenderDiveState() {
 	mTextures[0]->Render();
+
+	
 
 	//debug render of the dive path
 	//TODO: Comment out the below for finished product!
 	int currentPath = mIndex % 2;
-
-	if (mEscort) {
+	if (mCaptureDive) {
 		currentPath += 2;
 	}
+
 	for (int i = 0; i < sDivePaths[currentPath].size() - 1; i++) {
 		Graphics::Instance()->DrawLine(
 			mDiveStartPosition.x + sDivePaths[currentPath][i].x,
@@ -217,38 +151,22 @@ void Butterfly::RenderDiveState() {
 			mDiveStartPosition.y + sDivePaths[currentPath][i + 1].y
 		);
 	}
-
-	//debug render of the return path
-	//TODO: If we encounter weird behaviours with the return path drawing
-	//COME BACK HERE
-	Vector2 finalPos = WorldFormationPosition();
-	auto currentDivePath = sDivePaths[currentPath];
-	Vector2 pathEndPos = mDiveStartPosition + currentDivePath[currentDivePath.size() - 1];
-
-	Graphics::Instance()->DrawLine(
-		pathEndPos.x,
-		pathEndPos.y,
-		finalPos.x,
-		finalPos.y
-	);
 }
 
-void Butterfly::RenderDeadState() {
+void Boss::RenderDeadState() { }
 
-}
+Boss::Boss(int path, int index, bool challenge) : Enemy(path, index, challenge) {
+	mTextures[0] = new Texture("Bosses.png", 0, 0, 64, 64);
+	mTextures[1] = new Texture("Bosses.png", 64, 0, 64, 64);
 
-Butterfly::Butterfly(int path, int index, bool challenge) : Enemy(path, index, challenge) {
-	mTextures[0] = new Texture("AnimatedEnemies.png", 0, 0, 52, 40);
-	mTextures[1] = new Texture("AnimatedEnemies.png", 52, 0, 52, 40);
-	
 	for (auto texture : mTextures) {
 		texture->Parent(this);
 		texture->Position(Vec2_Zero);
 	}
 
-	mType = Enemy::Butterfly;
+	mType = Enemy::Boss;
 }
 
-Butterfly::~Butterfly() {
+Boss::~Boss() {
 
 }

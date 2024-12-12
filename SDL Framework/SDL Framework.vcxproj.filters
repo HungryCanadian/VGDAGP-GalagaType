@@ -159,6 +159,9 @@
     <ClCompile Include="Wasp.cpp">
       <Filter>Caspira\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Caspira\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathHelper.h">
@@ -276,6 +279,9 @@
       <Filter>Caspira\Header</Filter>
     </ClInclude>
     <ClInclude Include="Wasp.h">
+      <Filter>Caspira\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
   </ItemGroup>

@@ -120,7 +120,7 @@ void Enemy::HandleStates() {
 }
 
 void Enemy::RenderFlyInState() {
-	mTexture->Render();
+	mTextures[0]->Render();
 
 	for (int i = 0; i < sPaths[mCurrentPath].size() - 1; i++) {
 		Graphics::Instance()->DrawLine(
@@ -133,7 +133,7 @@ void Enemy::RenderFlyInState() {
 }
 
 void Enemy::RenderInFormationState() {
-	mTexture->Render();
+	mTextures[sFormation->GetTick() % 2]->Render();
 
 	for (int i = 0; i < sPaths[mCurrentPath].size() - 1; i++) {
 		Graphics::Instance()->DrawLine(
@@ -171,16 +171,18 @@ Enemy::Enemy(int path, int index, bool challenge) : mCurrentPath(path), mIndex(i
 	mCurrentWaypoint = 1;
 	Position(sPaths[mCurrentPath][0]);
 
-	mTexture = nullptr;
-
+	mTextures[0] = nullptr;
+	mTextures[1] = nullptr;
 	mSpeed = 450.0f;
 }
 
 Enemy::~Enemy() {
 	mTimer = nullptr;
 
-	delete mTexture;
-	mTexture = nullptr;
+	for (auto texture : mTextures) {
+		delete texture;
+		texture = nullptr;
+	}
 }
 
 Enemy::States Enemy::CurrentState() {
