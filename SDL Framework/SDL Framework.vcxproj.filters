@@ -40,6 +40,12 @@
     <Filter Include="Source Files\Singletons">
       <UniqueIdentifier>{f52fc8a5-a7c8-4c1f-8b42-65fda6dab6d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Caspira\Data">
+      <UniqueIdentifier>{c0ddc269-70b3-45d5-ae8a-8c529c77a5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Caspira\TinyXML">
+      <UniqueIdentifier>{d4cefa18-1220-45e3-9350-56e63c419c69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SDL Framework.cpp">
@@ -161,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>Caspira\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Caspira\TinyXML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,5 +293,13 @@
     <ClInclude Include="Boss.h">
       <Filter>Caspira\Header</Filter>
     </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Caspira\TinyXML</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Data\Level1.xml">
+      <Filter>Caspira\Data</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

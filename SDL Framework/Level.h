@@ -7,8 +7,10 @@
 #include "Butterfly.h"
 #include "Wasp.h"
 #include "Boss.h"
+#include "tinyxml2.h"
 
 using namespace SDLFramework;
+using namespace tinyxml2;
 
 class Level : public GameEntity {
 public:
@@ -34,16 +36,31 @@ private:
 	Player* mPlayer;
 	Formation* mFormation;
 
-	const int MAX_BUTTERFLIES = 16;
-	const int MAX_WASPS = 20;
-	const int MAX_BOSSES = 4;
+	static const int MAX_BUTTERFLIES = 16;
+	static const int MAX_WASPS = 20;
+	static const int MAX_BOSSES = 4;
 	
 	int mButterflyCount;
 	int mWaspCount;
 	int mBossCount;
+	
+	Butterfly* mFormationButterflies[MAX_BUTTERFLIES];
+	Wasp* mFormationWasps[MAX_WASPS];
+	Boss* mFormationBosses[MAX_BOSSES];
+
 	std::vector<Enemy*> mEnemies;
 
+	XMLDocument mSpawningPatterns;
+	int mCurrentFlyInPriority;
+	int mCurrentFlyInIndex;
+
+	float mSpawnDelay;
+	float mSpawnTimer;
+
+	bool mSpawningFinished;
+
 	int mStage;
+	bool mChallengeStage;
 	bool mStageStarted;
 
 	Texture* mReadyLabel;
@@ -74,6 +91,8 @@ private:
 	void HandlePlayerDeath();
 
 	void StartStage();
+
+	bool EnemyFlyingIn();
 	
 	void HandleEnemySpawning();
 	void HandleEnemyFormation();
