@@ -59,6 +59,11 @@ private:
 
 	bool mSpawningFinished;
 
+	Butterfly* mDivingButterfly;
+	bool mSkipFirstbutterfly;
+	float mButterflyDiveDelay;
+	float mButterflyDiveTimer;
+
 	int mStage;
 	bool mChallengeStage;
 	bool mStageStarted;
