@@ -91,6 +91,8 @@ private:
 
 	LevelStates mCurrentState;
 
+	
+
 	void HandleStartLabels();
 	void HandleCollisions();
 	void HandlePlayerDeath();

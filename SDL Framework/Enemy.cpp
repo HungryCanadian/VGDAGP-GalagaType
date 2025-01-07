@@ -248,6 +248,7 @@ void Enemy::RenderStates() {
 		RenderDiveState();
 		break;
 	case Dead:
+		//TODO Render Death Texture in dead state
 		RenderDeadState();
 		break;
 
@@ -264,20 +265,34 @@ Enemy::Enemy(int path, int index, bool challenge) : mCurrentPath(path), mIndex(i
 
 	mTextures[0] = nullptr;
 	mTextures[1] = nullptr;
+
 	mSpeed = 450.0f;
+
+	mDeathAnimation = new AnimatedTexture("EnemyExplosion.png", 0, 0, 128, 128, 5, 1.0f, AnimatedTexture::Horizontal);
+	mDeathAnimation->Parent(this);
+	mDeathAnimation->Position(Vec2_Zero);
+	mDeathAnimation->SetWrapMode(AnimatedTexture::Once);
+
 }
 
 Enemy::~Enemy() {
 	mTimer = nullptr;
-
+	
 	for (auto texture : mTextures) {
 		delete texture;
 		texture = nullptr;
 	}
+
+	delete mDeathAnimation;
+	mDeathAnimation = nullptr;
 }
 
 Enemy::States Enemy::CurrentState() {
 	return mCurrentState;
+}
+
+bool Enemy::InDeathAnimation() {
+	return mDeathAnimation->IsAnimating();
 }
 
 void Enemy::Dive(int type) {

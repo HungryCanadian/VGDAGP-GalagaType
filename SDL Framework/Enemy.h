@@ -12,6 +12,8 @@ public:
 
 	static void CreatePaths();
 	static void SetFormation(Formation* formation);
+
+	bool InDeathAnimation();
 	
 	Enemy(int path, int index, bool challenge);
 	virtual ~Enemy();
@@ -33,6 +35,8 @@ protected:
 	Timer* mTimer;
 
 	Texture* mTextures[2];
+	AnimatedTexture* mDeathAnimation;
+
 	States mCurrentState;
 	Types mType;
 
